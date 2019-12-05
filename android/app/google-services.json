@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1045695523411",
+    "firebase_url": "https://bake4me-confectioneries.firebaseio.com",
+    "project_id": "bake4me-confectioneries",
+    "storage_bucket": "bake4me-confectioneries.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045695523411:android:7fe73a725ff68c7b33b4a6",
+        "android_client_info": {
+          "package_name": "com.bake4me"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045695523411-qoi4feirmdq7ddp2c45p75f77ku3eo7e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bake4me",
+            "certificate_hash": "c7adb3d745ac0233fac4669fbdef02b863bc841c"
+          }
+        },
+        {
+          "client_id": "1045695523411-jt2lftnlrshaq8hvdcoq9ub2ivgpibu6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLhiOIX4lTgVgVksCRddqsCd3LCnhiayU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045695523411-jt2lftnlrshaq8hvdcoq9ub2ivgpibu6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1045695523411-s9173ht99j83qsoecv2oi6rln92g91iv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.Bake4Me"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
