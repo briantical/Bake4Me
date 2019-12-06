@@ -7,7 +7,7 @@ module.exports = {
       node: {
         paths: ['src'],
         alias: {
-          _assets: './src/app/assets',
+          _assets: './src/assets',
         },
       },
     },

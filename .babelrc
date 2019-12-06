@@ -7,7 +7,7 @@
         "root": ["./src"],
         "extensions": [".js", ".ios.js", ".android.js"],
         "alias": {
-          "_assets": "./src/app/assets"
+          "_assets": "./src/assets"
         }
       }
     ]
