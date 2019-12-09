@@ -2,7 +2,16 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "_assets": ["./src/assets/*"]
+      "_assets": ["./src/assets/*"],
+      "_components": ["./src/components/*"],
+      "_constants": ["./src/constants/*"],
+      "_actions": ["src/reduxmgt/actions/*"],
+      "_reducers": ["src/reduxmgt/reducers/*"],
+      "_store": ["src/reduxmgt/store/*"],
+      "_reduxmgt": ["src/reduxmgt/*"],
+      "_routes": ["./src/routes/*"],
+      "_styles": ["./src/styles/*"],
+      "_utils": ["./src/utils/*"]
     }
   }
 }
