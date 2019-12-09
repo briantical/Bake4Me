@@ -11,7 +11,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log('Store' + JSON.stringify(store));
     return (
       <Provider store={store}>
         <AppNavigator />

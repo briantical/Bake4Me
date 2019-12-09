@@ -2,23 +2,18 @@ import React, {Component} from 'react';
 import {SafeAreaView, Text, Button} from 'react-native';
 import {connect} from 'react-redux';
 
-import DrawerNavigator from '_routes/dashboard_routes';
-
-import {DrawerItems} from 'react-navigation-drawer';
-
-import * as screenNames from '_constants/screen_names';
-import DashboardNavigator from '_routes';
+import {DrawerActions} from 'react-navigation-drawer';
 
 export class Account extends Component {
-  routes = ['hjkl', 'ghjkl'];
   render() {
     return (
       <SafeAreaView>
         <Text> Account </Text>
-        <DrawerItems items={[DashboardNavigator]} />
         <Button
           title="REGISTER"
-          onPress={() => this.props.navigation.navigate(screenNames.REGISTER)}
+          onPress={() =>
+            this.props.navigation.dispatch(DrawerActions.openDrawer())
+          }
         />
       </SafeAreaView>
     );

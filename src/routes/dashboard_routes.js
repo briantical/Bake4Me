@@ -15,7 +15,7 @@ const navigationOptions = {
   header: null,
 };
 
-const DashboardNavigator = createStackNavigator({
+const routeConfigs = {
   [screenNames.ACCOUNT]: {
     screen: Account,
     navigationOptions,
@@ -48,6 +48,8 @@ const DashboardNavigator = createStackNavigator({
     screen: Vendor,
     navigationOptions,
   },
-});
+};
+
+const DashboardNavigator = createStackNavigator(routeConfigs);
 
 export default DashboardNavigator;
