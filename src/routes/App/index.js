@@ -16,43 +16,75 @@ import {
 
 import * as screenNames from '_constants/screen_names';
 
-const navigationOptions = {
-  header: null,
-  drawerIcon: ({tintColor}) => <Icon name="navigation" type="feather" />,
-};
-
 const RouteConfigs = {
-  [screenNames.ACCOUNT]: {
-    screen: Account,
-    navigationOptions,
-  },
-  [screenNames.DEALS]: {
-    screen: Deals,
-    navigationOptions,
-  },
   [screenNames.DELIVERY]: {
     screen: Delivery,
-    navigationOptions,
-  },
-  [screenNames.INFO]: {
-    screen: Info,
-    navigationOptions,
-  },
-  [screenNames.LIVE_CHAT]: {
-    screen: Live_Chat,
-    navigationOptions,
-  },
-  [screenNames.ORDERS]: {
-    screen: Orders,
-    navigationOptions,
-  },
-  [screenNames.SETTINGS]: {
-    screen: Settings,
-    navigationOptions,
+    navigationOptions: {
+      drawerIcon: ({tintColor}) => (
+        <Icon name="bike" type="material-community" color={tintColor} />
+      ),
+    },
   },
   [screenNames.VENDOR]: {
     screen: Vendor,
-    navigationOptions,
+    navigationOptions: {
+      drawerIcon: ({tintColor}) => (
+        <Icon name="restaurant" type="material" color={tintColor} />
+      ),
+    },
+  },
+  [screenNames.DEALS]: {
+    screen: Deals,
+    navigationOptions: {
+      drawerIcon: ({tintColor}) => (
+        <Icon name="percent" type="feather" color={tintColor} />
+      ),
+    },
+  },
+  [screenNames.ACCOUNT]: {
+    screen: Account,
+    navigationOptions: {
+      drawerIcon: ({tintColor}) => (
+        <Icon name="user" type="evilicon" color={tintColor} />
+      ),
+    },
+  },
+  [screenNames.ORDERS]: {
+    screen: Orders,
+    navigationOptions: {
+      drawerIcon: ({tintColor}) => (
+        <Icon name="page" type="foundation" color={tintColor} />
+      ),
+    },
+  },
+
+  [screenNames.SETTINGS]: {
+    screen: Settings,
+    navigationOptions: {
+      drawerIcon: ({tintColor}) => (
+        <Icon name="setting" type="antdesign" color={tintColor} />
+      ),
+    },
+  },
+  [screenNames.LIVE_CHAT]: {
+    screen: Live_Chat,
+    navigationOptions: {
+      drawerIcon: ({tintColor}) => (
+        <Icon name="customerservice" type="antdesign" color={tintColor} />
+      ),
+    },
+  },
+  [screenNames.INFO]: {
+    screen: Info,
+    navigationOptions: {
+      drawerIcon: ({tintColor}) => (
+        <Icon
+          name="information-outline"
+          type="material-community"
+          color={tintColor}
+        />
+      ),
+    },
   },
 };
 
