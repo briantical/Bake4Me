@@ -41,6 +41,7 @@ target 'Bake4Me' do
   # Required by RNFirebase
   pod 'Firebase/Core', '~> 6.13.0'
 
+
   target 'Bake4MeTests' do
     inherit! :search_paths
     # Pods for testing

@@ -1,5 +1,6 @@
 export const INFO = 'Info';
 export const HOME = 'Home';
+export const AUTH = 'Auth';
 export const LOGIN = 'Login';
 export const DEALS = 'Deals';
 export const SIGNUP = 'Signup';
@@ -11,16 +12,4 @@ export const PROFILE = 'Profile';
 export const REGISTER = 'Register';
 export const DELIVERY = 'Delivery';
 export const SETTINGS = 'Settings';
-export const LIVE_CHAT = 'Live_Chat';
-
-export const DRAWER_INFO = 'DrawerInfo';
-export const DRAWER_HOME = 'DrawerHome';
-export const DRAWER_DEALS = 'DrawerDeals';
-export const DRAWER_ORDERS = 'DrawerOrders';
-export const DRAWER_VENDOR = 'DrawerVendor';
-export const DRAWER_ACCOUNT = 'DrawerAccount';
-export const DRAWER_PROFILE = 'DrawerProfile';
-export const DRAWER_REGISTER = 'DrawerRegister';
-export const DRAWER_DELIVERY = 'DrawerDelivery';
-export const DRAWER_SETTINGS = 'DrawerSettings';
-export const DRAWER_LIVE_CHAT = 'DrawerLive_Chat';
+export const LIVE_CHAT = 'Live Chat';

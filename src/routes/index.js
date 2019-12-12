@@ -1,7 +1,7 @@
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
-
-import AuthNavigator from './Auth/';
-import DashboardNavigator from './dashboard_routes';
+import * as screenNames from '_constants/screen_names';
+import AuthNavigator from './Auth';
+import DrawerNavigator from './App';
 
 import AuthLoadingScreen from './Auth/AuthLoadingScreen';
 
@@ -9,8 +9,8 @@ const AppNavigator = createAppContainer(
   createSwitchNavigator(
     {
       AuthLoading: AuthLoadingScreen,
-      App: DashboardNavigator,
-      Auth: AuthNavigator,
+      [screenNames.HOME]: DrawerNavigator,
+      [screenNames.AUTH]: AuthNavigator,
     },
     {
       initialRouteName: 'AuthLoading',

@@ -1,5 +1,6 @@
 import React from 'react';
 import {createDrawerNavigator} from 'react-navigation-drawer';
+import {Icon} from 'react-native-elements';
 
 import {
   Drawer,
@@ -17,6 +18,7 @@ import * as screenNames from '_constants/screen_names';
 
 const navigationOptions = {
   header: null,
+  drawerIcon: ({tintColor}) => <Icon name="navigation" type="feather" />,
 };
 
 const RouteConfigs = {
@@ -57,6 +59,15 @@ const RouteConfigs = {
 const DrawerNavigatorConfig = {
   hideStatusBar: true,
   contentComponent: props => <Drawer {...props} />,
+  contentOptions: {
+    activeTintColor: '#C50069',
+    itemsContainerStyle: {
+      marginVertical: 0,
+    },
+    iconContainerStyle: {
+      opacity: 1,
+    },
+  },
 };
 
 const DrawerNavigator = createDrawerNavigator(
