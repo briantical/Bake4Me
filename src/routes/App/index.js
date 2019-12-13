@@ -14,11 +14,13 @@ import {
   Vendor,
 } from '_components/Dashboard';
 
+import {DeliveryNavigator} from './Main/';
+
 import * as screenNames from '_constants/screen_names';
 
 const RouteConfigs = {
   [screenNames.DELIVERY]: {
-    screen: Delivery,
+    screen: DeliveryNavigator,
     navigationOptions: {
       drawerIcon: ({tintColor}) => (
         <Icon name="bike" type="material-community" color={tintColor} />

@@ -1,6 +1,8 @@
 export const INFO = 'Info';
 export const HOME = 'Home';
 export const AUTH = 'Auth';
+export const CITY = 'City';
+export const AREA = 'Area';
 export const LOGIN = 'Login';
 export const DEALS = 'Deals';
 export const SIGNUP = 'Signup';

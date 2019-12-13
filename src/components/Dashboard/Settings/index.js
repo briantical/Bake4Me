@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {SafeAreaView, Text, Button} from 'react-native';
 import {connect} from 'react-redux';
 
 export class Settings extends Component {
@@ -7,6 +7,10 @@ export class Settings extends Component {
     return (
       <SafeAreaView>
         <Text> Settings </Text>
+        <Button
+          title="LIVE CHAT"
+          onPress={() => this.props.navigation.navigate('Live Chat')}
+        />
       </SafeAreaView>
     );
   }

@@ -9,7 +9,7 @@ const AppNavigator = createAppContainer(
   createSwitchNavigator(
     {
       AuthLoading: AuthLoadingScreen,
-      [screenNames.HOME]: DrawerNavigator,
+      [screenNames.DRAWER]: DrawerNavigator,
       [screenNames.AUTH]: AuthNavigator,
     },
     {

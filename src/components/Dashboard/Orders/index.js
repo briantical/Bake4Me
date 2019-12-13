@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {SafeAreaView, Text, Button} from 'react-native';
 import {connect} from 'react-redux';
 
 export class Orders extends Component {
@@ -7,6 +7,10 @@ export class Orders extends Component {
     return (
       <SafeAreaView>
         <Text> Orders </Text>
+        <Button
+          title="SETTINGS"
+          onPress={() => this.props.navigation.navigate('Settings')}
+        />
       </SafeAreaView>
     );
   }
