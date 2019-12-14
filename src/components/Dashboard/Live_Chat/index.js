@@ -1,16 +1,32 @@
 import React, {Component} from 'react';
-import {SafeAreaView, Text, Button} from 'react-native';
+import {SafeAreaView, Dimensions, View} from 'react-native';
 import {connect} from 'react-redux';
+import {Header, Icon, Button} from 'react-native-elements';
+import {DrawerActions} from 'react-navigation-drawer';
+var {height} = Dimensions.get('window');
 
 export class Live_Chat extends Component {
   render() {
     return (
       <SafeAreaView>
-        <Text> Live Chat </Text>
-        <Button
-          title="INFO"
-          onPress={() => this.props.navigation.navigate('Info')}
-        />
+        <View style={{height}}>
+          <Header
+            backgroundColor="#C50069"
+            leftComponent={
+              <Icon
+                name="menu"
+                color="#fff"
+                onPress={() =>
+                  this.props.navigation.dispatch(DrawerActions.openDrawer())
+                }
+              />
+            }
+            centerComponent={{
+              text: 'Live Chat',
+              style: {color: '#fff', fontWeight: 'bold'},
+            }}
+          />
+        </View>
       </SafeAreaView>
     );
   }

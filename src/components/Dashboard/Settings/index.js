@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {SafeAreaView, Text, Dimensions, View, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 
-import {Header, Input, Button, Icon} from 'react-native-elements';
+import {Header, Icon} from 'react-native-elements';
 import {DrawerActions} from 'react-navigation-drawer';
+import {Switch} from 'react-native-gesture-handler';
 
 var {height} = Dimensions.get('window');
 let subheight = height / 10;
@@ -33,7 +34,7 @@ export class Settings extends Component {
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Text>Load Images</Text>
-              <Icon name="sync" />
+              <Switch value={true} />
             </View>
           </View>
           <View style={styles.listitem}>

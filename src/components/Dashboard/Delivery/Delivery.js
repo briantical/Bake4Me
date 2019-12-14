@@ -42,13 +42,17 @@ export class Delivery extends Component {
             onPress={() => this.props.navigation.navigate('Area')}>
             <Input label="Area" placeholder="Nakasero" disabled={true} />
           </TouchableOpacity>
-          <TouchableOpacity style={{flexDirection: 'row'}}>
+          <TouchableOpacity
+            style={{flexDirection: 'row', alignItems: 'center', padding: 5}}>
             <Icon name="find" type="antdesign" color="#C50069" />
-            <Text style={{color: '#C50069'}}>Use my currrent location</Text>
+            <Text style={{color: '#C50069', paddingLeft: 10}}>
+              Use my currrent location
+            </Text>
           </TouchableOpacity>
           <Button
             title="See Vendor"
             buttonStyle={{backgroundColor: '#C50069'}}
+            containerStyle={{padding: 10}}
             onPress={() => this.props.navigation.navigate('Vendor')}
           />
         </View>
