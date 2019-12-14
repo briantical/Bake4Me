@@ -6,7 +6,6 @@ import {
   Drawer,
   Account,
   Deals,
-  Delivery,
   Info,
   Live_Chat,
   Orders,
@@ -14,7 +13,7 @@ import {
   Vendor,
 } from '_components/Dashboard';
 
-import {DeliveryNavigator} from './Main/';
+import {DeliveryNavigator, InfoNavigator} from './Main/';
 
 import * as screenNames from '_constants/screen_names';
 
@@ -77,7 +76,7 @@ const RouteConfigs = {
     },
   },
   [screenNames.INFO]: {
-    screen: Info,
+    screen: InfoNavigator,
     navigationOptions: {
       drawerIcon: ({tintColor}) => (
         <Icon
