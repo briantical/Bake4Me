@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
-import SplashScreen from 'react-native-splash-screen';
+import 'react-native-gesture-handler';
 
 import store from '_store';
 import AppNavigator from '_routes';
