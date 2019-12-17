@@ -12,7 +12,7 @@ import {
   Vendor,
 } from '_components/Dashboard';
 
-import {DeliveryNavigator, InfoNavigator} from './Main/';
+import {DeliveryNavigator, InfoNavigator, VendorNavigator} from './Main/';
 
 import * as screenNames from '_constants/screen_names';
 
@@ -26,7 +26,7 @@ const RouteConfigs = {
     },
   },
   [screenNames.VENDOR]: {
-    screen: Vendor,
+    screen: VendorNavigator,
     navigationOptions: {
       drawerIcon: ({tintColor}) => (
         <Icon name="restaurant" type="material" color={tintColor} />
