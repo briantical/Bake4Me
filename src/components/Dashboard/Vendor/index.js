@@ -1,42 +1,69 @@
-import * as React from 'react';
+import React, {Component} from 'react';
 import {
-  View,
-  StyleSheet,
-  Dimensions,
   SafeAreaView,
+  View,
   Text,
+  Dimensions,
   ScrollView,
+  StyleSheet,
 } from 'react-native';
-import {TabView, SceneMap} from 'react-native-tab-view';
+import {connect} from 'react-redux';
 import {Header, Icon, Tile} from 'react-native-elements';
-
 import {DrawerActions} from 'react-navigation-drawer';
 
+import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
+
+import {setScrollScreen, setScrollScreenIndex} from '_actions';
+
 const FirstRoute = () => (
-  <View style={[styles.scene, {backgroundColor: '#ff4081'}]} />
+  <View style={[styles.scene, {backgroundColor: '#FFF'}]}>
+    <Text>ONE</Text>
+  </View>
 );
 
 const SecondRoute = () => (
-  <View style={[styles.scene, {backgroundColor: '#673ab7'}]} />
+  <View style={[styles.scene, {backgroundColor: '#FFF'}]}>
+    <Text>SECOND</Text>
+  </View>
 );
 
-const initialLayout = {width: Dimensions.get('window').width};
+const ThirdRoute = () => (
+  <View style={[styles.scene, {backgroundColor: '#FFF'}]}>
+    <Text>THIRD</Text>
+  </View>
+);
 
-export default function Vendor() {
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    {key: 'first', title: 'First'},
-    {key: 'second', title: 'Second'},
-  ]);
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 
-  const renderScene = SceneMap({
-    first: FirstRoute,
-    second: SecondRoute,
-  });
+const initialLayout = {width};
 
-  return (
-    <SafeAreaView style={{flex: 1}}>
-      <ScrollView>
+const renderScene = SceneMap({
+  cakes: FirstRoute,
+  snacks: SecondRoute,
+  addons: ThirdRoute,
+});
+
+export class Vendor extends Component {
+  renderTabBar = props => (
+    <TabBar
+      {...props}
+      indicatorStyle={{backgroundColor: '#C50069'}}
+      style={{backgroundColor: '#FFF', height: 50, width}}
+      scrollEnabled={true}
+      activeColor="#C50069"
+      inactiveColor="#000"
+      bounces
+    />
+  );
+
+  render() {
+    let {screens, screensindex, setScrollScreenIndex} = this.props;
+    let index = screensindex;
+    let routes = screens;
+
+    return (
+      <SafeAreaView style={{flex: 1}}>
         <Header
           backgroundColor="#C50069"
           leftComponent={
@@ -53,38 +80,52 @@ export default function Vendor() {
             style: {color: '#fff'},
           }}
         />
-        <Tile
-          imageSrc={require('_assets/bake4me.png')}
-          title="Bake4Me"
-          featured
-          caption="Get all the cafectionery"
-          containerStyle={{margin: 10}}
-          imageContainerStyle={{padding: 10}}
-          titleStyle={{color: 'rgb(42,203,178)'}}
-          captionStyle={{fontWeight: 'bold'}}>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}>
-            <Text>Caption</Text>
-            <Text>Caption</Text>
-          </View>
-        </Tile>
-        <TabView
-          navigationState={{index, routes}}
-          renderScene={renderScene}
-          onIndexChange={setIndex}
-          initialLayout={initialLayout}
-        />
-      </ScrollView>
-    </SafeAreaView>
-  );
+        <ScrollView>
+          <Tile
+            imageSrc={require('_assets/bake4me.png')}
+            title="Bake4Me"
+            featured
+            caption="Get all the cafectionery"
+            containerStyle={{}}
+            imageContainerStyle={{}}
+            imageProps={{resizeMode: 'contain'}}
+            titleStyle={{color: 'rgb(42,203,178)'}}
+            captionStyle={{fontWeight: 'bold'}}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}>
+              <Text>World wide </Text>
+              <Text>Caption Caption</Text>
+            </View>
+          </Tile>
+          <TabView
+            navigationState={{index, routes}}
+            renderScene={renderScene}
+            renderTabBar={this.renderTabBar}
+            onIndexChange={setScrollScreenIndex}
+            initialLayout={initialLayout}
+          />
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   scene: {
     flex: 1,
+    height: height * 0.75,
   },
 });
+
+const mapStateToProps = state => {
+  const {screens, screensindex} = state;
+  return {screens, screensindex};
+};
+
+const mapDispatchToProps = {setScrollScreen, setScrollScreenIndex};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Vendor);

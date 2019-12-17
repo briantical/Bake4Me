@@ -6,7 +6,6 @@ import {
   Drawer,
   Account,
   Deals,
-  Info,
   Live_Chat,
   Orders,
   Settings,

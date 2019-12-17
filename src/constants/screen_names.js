@@ -20,3 +20,7 @@ export const REGISTER = 'Register';
 export const DELIVERY = 'Delivery';
 export const SETTINGS = 'Settings';
 export const LIVE_CHAT = 'Live Chat';
+
+export const CAKES = 'Cakes';
+export const SNACKS = 'Snacks';
+export const ADDONS = 'Addons';
