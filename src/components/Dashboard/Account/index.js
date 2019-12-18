@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {SafeAreaView, Text, Button, View} from 'react-native';
+import {SafeAreaView, Text, View} from 'react-native';
 import {connect} from 'react-redux';
 import {DrawerActions} from 'react-navigation-drawer';
 import {Header, Icon, Input} from 'react-native-elements';
+
 export class Account extends Component {
   render() {
     return (

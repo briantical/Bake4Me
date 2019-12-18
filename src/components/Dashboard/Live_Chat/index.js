@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {SafeAreaView, Dimensions, View} from 'react-native';
 import {connect} from 'react-redux';
-import {Header, Icon, Button} from 'react-native-elements';
+import {Header, Icon} from 'react-native-elements';
 import {DrawerActions} from 'react-navigation-drawer';
 var {height} = Dimensions.get('window');
 

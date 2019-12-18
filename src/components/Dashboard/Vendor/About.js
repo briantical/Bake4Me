@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, SafeAreaView} from 'react-native';
 import {connect} from 'react-redux';
 
 export class About extends Component {
   render() {
     return (
-      <View>
-        <Text> About </Text>
-      </View>
+      <SafeAreaView>
+        <View>
+          <Text> About </Text>
+        </View>
+      </SafeAreaView>
     );
   }
 }

@@ -3,12 +3,12 @@ import * as screenNames from '_constants/screen_names';
 import AuthNavigator from './Auth';
 import DrawerNavigator from './App';
 
-import AuthLoadingScreen from './Auth/AuthLoadingScreen';
+import AuthLoading from './AuthLoading';
 
 const AppNavigator = createAppContainer(
   createSwitchNavigator(
     {
-      AuthLoading: AuthLoadingScreen,
+      AuthLoading: AuthLoading,
       [screenNames.DRAWER]: DrawerNavigator,
       [screenNames.AUTH]: AuthNavigator,
     },

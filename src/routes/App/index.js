@@ -2,15 +2,7 @@ import React from 'react';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import {Icon} from 'react-native-elements';
 
-import {
-  Drawer,
-  Account,
-  Deals,
-  Live_Chat,
-  Orders,
-  Settings,
-  Vendor,
-} from '_components/Dashboard';
+import {Drawer, Account, Deals, Live_Chat, Orders, Settings} from '_components';
 
 import {DeliveryNavigator, InfoNavigator, VendorNavigator} from './Main/';
 

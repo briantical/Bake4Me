@@ -1,5 +1,5 @@
 import {createStackNavigator} from 'react-navigation-stack';
-import {Delivery, Area, City} from '_components/Dashboard';
+import {Delivery, Area, City} from '_components';
 import * as screenNames from '_constants/screen_names';
 
 const navigationOptions = {

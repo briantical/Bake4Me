@@ -1,12 +1,5 @@
 import {createStackNavigator} from 'react-navigation-stack';
-import {
-  About,
-  Addons,
-  Cakes,
-  Cart,
-  Snacks,
-  Vendor,
-} from '_components/Dashboard';
+import {About, Addons, Cakes, Cart, Snacks, Vendor} from '_components';
 import * as screenNames from '_constants/screen_names';
 
 const navigationOptions = {

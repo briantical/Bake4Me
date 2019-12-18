@@ -1,12 +1,5 @@
 import {createStackNavigator} from 'react-navigation-stack';
-import {
-  Info,
-  Contact,
-  Policy,
-  Press,
-  Terms,
-  Works,
-} from '_components/Dashboard';
+import {Info, Contact, Policy, Press, Terms, Works} from '_components';
 import * as screenNames from '_constants/screen_names';
 
 const navigationOptions = {

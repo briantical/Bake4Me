@@ -6,7 +6,7 @@ import SplashScreen from 'react-native-splash-screen';
 
 import * as screenNames from '_constants/screen_names';
 
-class AuthLoadingScreen extends React.Component {
+class AuthLoading extends React.Component {
   componentDidMount() {
     this._bootstrapAsync();
     SplashScreen.hide();
@@ -34,4 +34,4 @@ class AuthLoadingScreen extends React.Component {
   }
 }
 
-export default AuthLoadingScreen;
+export default AuthLoading;

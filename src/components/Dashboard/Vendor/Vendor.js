@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, Dimensions, ScrollView, View} from 'react-native';
+import {SafeAreaView, Dimensions, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import {Header, Icon, Tile} from 'react-native-elements';
 import {DrawerActions} from 'react-navigation-drawer';
@@ -8,7 +8,9 @@ import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 
 import {setScrollScreen, setScrollScreenIndex} from '_actions';
 
-import {Cakes, Snacks, Addons} from '_components/Dashboard';
+import {Cakes, Snacks, Addons} from '_components';
+
+import * as screenNames from '_constants/screen_names';
 
 const FirstRoute = () => <Cakes />;
 const SecondRoute = () => <Snacks />;
@@ -57,9 +59,16 @@ export class Vendor extends Component {
           }
           centerComponent={{
             text: 'Delivery to Nakasero',
-            style: {color: '#fff'},
+            style: {color: '#fff', fontWeight: 'bold'},
           }}
-          rightComponent={<Icon name="info" type="feather" color="#FFF" />}
+          rightComponent={
+            <Icon
+              name="info"
+              type="feather"
+              color="#FFF"
+              onPress={() => this.props.navigation.navigate(screenNames.ABOUT)}
+            />
+          }
         />
 
         <ScrollView>

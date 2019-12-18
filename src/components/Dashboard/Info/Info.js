@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, Text, Dimensions, View, StyleSheet} from 'react-native';
+import {SafeAreaView, Dimensions, View} from 'react-native';
 import {connect} from 'react-redux';
 
 import {Header, ListItem, Icon} from 'react-native-elements';
