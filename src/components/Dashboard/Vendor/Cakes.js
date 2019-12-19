@@ -28,8 +28,8 @@ const DATA = [
 
 const Item = ({title}) => {
   return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
+    <View>
+      <Text>{title}</Text>
     </View>
   );
 };
@@ -51,20 +51,6 @@ export class Cakes extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //marginTop: Constants.statusBarHeight,
-  },
-  scene: {
-    flex: 1,
-    height: height * 0.75,
-  },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
   },
 });
 
