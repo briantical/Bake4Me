@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {SafeAreaView, Dimensions, ScrollView} from 'react-native';
+import {
+  SafeAreaView,
+  Dimensions,
+  View,
+  FlatList,
+  StyleSheet,
+} from 'react-native';
 import {connect} from 'react-redux';
 import {Header, Icon, Tile} from 'react-native-elements';
 import {DrawerActions} from 'react-navigation-drawer';
@@ -12,13 +18,15 @@ import {Cakes, Snacks, Addons} from '_components';
 
 import * as screenNames from '_constants/screen_names';
 
+const height = Dimensions.get('window').height;
+
 const FirstRoute = () => <Cakes />;
 const SecondRoute = () => <Snacks />;
 const ThirdRoute = () => <Addons />;
 
 const width = Dimensions.get('window').width;
 
-const initialLayout = {width};
+const initialLayout = {width: Dimensions.get('window').width};
 
 const renderScene = SceneMap({
   cakes: FirstRoute,
@@ -26,8 +34,21 @@ const renderScene = SceneMap({
   addons: ThirdRoute,
 });
 
-export class Vendor extends Component {
-  renderTabBar = props => (
+const DATA = [
+  {
+    id: 'first',
+    title: 'First flatlist',
+  },
+];
+
+const data = [{id: 'second', title: 'Second flatlist'}];
+
+const Item2 = ({props}) => {
+  let {screens, screensindex, setScrollScreenIndex} = props;
+  let index = screensindex;
+  let routes = screens;
+
+  let renderTabBar = props => (
     <TabBar
       {...props}
       indicatorStyle={{backgroundColor: '#C50069'}}
@@ -38,12 +59,42 @@ export class Vendor extends Component {
       bounces
     />
   );
+  return (
+    <>
+      <Tile
+        imageSrc={require('_assets/bake4me.png')}
+        title="Bake4Me"
+        featured
+        caption="Get all the cafectionery"
+        imageProps={{resizeMode: 'contain'}}
+        titleStyle={{color: 'rgb(42,203,178)'}}
+        captionStyle={{fontWeight: 'bold'}}></Tile>
 
+      <TabView
+        navigationState={{index, routes}}
+        renderScene={renderScene}
+        renderTabBar={renderTabBar}
+        onIndexChange={setScrollScreenIndex}
+        initialLayout={initialLayout}
+      />
+    </>
+  );
+};
+
+const Item = ({props}) => {
+  return (
+    <View style={styles.item}>
+      <FlatList
+        data={data}
+        renderItem={() => <Item2 props={props} />}
+        keyExtractor={item => item.id}
+      />
+    </View>
+  );
+};
+
+export class Vendor extends Component {
   render() {
-    let {screens, screensindex, setScrollScreenIndex} = this.props;
-    let index = screensindex;
-    let routes = screens;
-
     return (
       <SafeAreaView style={{flex: 1}}>
         <Header
@@ -70,31 +121,29 @@ export class Vendor extends Component {
             />
           }
         />
-
-        <ScrollView>
-          <Tile
-            imageSrc={require('_assets/bake4me.png')}
-            title="Bake4Me"
-            featured
-            caption="Get all the cafectionery"
-            containerStyle={{}}
-            imageContainerStyle={{}}
-            imageProps={{resizeMode: 'contain'}}
-            titleStyle={{color: 'rgb(42,203,178)'}}
-            captionStyle={{fontWeight: 'bold'}}></Tile>
-
-          <TabView
-            navigationState={{index, routes}}
-            renderScene={renderScene}
-            renderTabBar={this.renderTabBar}
-            onIndexChange={setScrollScreenIndex}
-            initialLayout={initialLayout}
-          />
-        </ScrollView>
+        <FlatList
+          data={DATA}
+          renderItem={({item}) => <Item props={this.props} />}
+          keyExtractor={item => item.id}
+        />
       </SafeAreaView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scene: {
+    flex: 1,
+    height: height * 0.75,
+  },
+  item: {
+    flex: 1,
+    position: 'relative',
+  },
+});
 
 const mapStateToProps = state => {
   const {screens, screensindex} = state;
