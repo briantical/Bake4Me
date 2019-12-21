@@ -1,5 +1,13 @@
 import React, {Component} from 'react';
-import {Text, SafeAreaView, StyleSheet, View, FlatList} from 'react-native';
+import {
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  FlatList,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import {connect} from 'react-redux';
 
 const DATA = [
@@ -7,29 +15,30 @@ const DATA = [
     id: 'bd7acbdea-4-cake-aepd5-3ad53abb28ba',
     name: 'Cake 1',
     description: 'The cake one',
-    image: 'Cake one image url',
+    image: require('_assets/cake1.jpg'),
     price: '30000',
   },
   {
     id: 'bd7acbefa-4-cake-aaed5-3ad5x3abb28ba',
     name: 'Cake 2',
     description: 'The cake two',
-    image: 'Cake two image url',
+    image: require('_assets/cake2.jpg'),
     price: '33000',
   },
   {
     id: 'bd7acbea-4-446c2-cake-3ads53sabb28ba',
     name: 'Cake 3',
     description: 'The cake three',
-    image: 'Cake three image url',
+    image: require('_assets/cake3.jpg'),
     price: '45000',
   },
 ];
 
-const Item = ({content}) => {
+const Item = ({content, props}) => {
   let {id, name, description, image, price} = content;
   return (
-    <View
+    <TouchableOpacity
+      onPress={() => props.navigation.navigate('Cart')}
       style={{
         flexDirection: 'row',
         marginTop: 10,
@@ -45,24 +54,25 @@ const Item = ({content}) => {
           width: 80,
           marginLeft: 10,
         }}>
-        <Text>{image}</Text>
+        <Image source={(require = image)} style={{height: 80, width: 80}} />
       </View>
       <View style={{paddingLeft: 5}}>
         <Text style={{fontWeight: 'bold'}}>{name}</Text>
         <Text>{description}</Text>
         <Text>{price}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 export class Cakes extends Component {
   render() {
+    const {myprops} = this.props;
     return (
       <SafeAreaView style={styles.container}>
         <FlatList
           data={DATA}
-          renderItem={({item}) => <Item content={item} />}
+          renderItem={({item}) => <Item content={item} props={myprops} />}
           listKey={(item, index) => 'D' + index.toString()}
         />
       </SafeAreaView>

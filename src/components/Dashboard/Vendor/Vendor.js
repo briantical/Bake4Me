@@ -20,19 +20,9 @@ import * as screenNames from '_constants/screen_names';
 
 const height = Dimensions.get('window').height;
 
-const FirstRoute = () => <Cakes />;
-const SecondRoute = () => <Snacks />;
-const ThirdRoute = () => <Addons />;
-
 const width = Dimensions.get('window').width;
 
 const initialLayout = {width: Dimensions.get('window').width};
-
-const renderScene = SceneMap({
-  cakes: FirstRoute,
-  snacks: SecondRoute,
-  addons: ThirdRoute,
-});
 
 const DATA = [
   {
@@ -47,6 +37,18 @@ const Item2 = ({props}) => {
   let {screens, screensindex, setScrollScreenIndex} = props;
   let index = screensindex;
   let routes = screens;
+
+  console.log(props);
+
+  const FirstRoute = () => <Cakes myprops={props} />;
+  const SecondRoute = () => <Snacks myprops={props} />;
+  const ThirdRoute = () => <Addons myprops={props} />;
+
+  const renderScene = SceneMap({
+    cakes: FirstRoute,
+    snacks: SecondRoute,
+    addons: ThirdRoute,
+  });
 
   let renderTabBar = props => (
     <TabBar

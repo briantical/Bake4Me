@@ -1,5 +1,13 @@
 import React, {Component} from 'react';
-import {Text, SafeAreaView, StyleSheet, View, FlatList} from 'react-native';
+import {
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  FlatList,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import {connect} from 'react-redux';
 
 const DATA = [
@@ -7,29 +15,31 @@ const DATA = [
     id: 'bd7acbdea-4-Amdkdon-aed5-3ad53abb28ba',
     name: 'Addon 1',
     description: 'The Addon one',
-    image: 'Addon one image url',
+    image: require('_assets/addon1.jpg'),
     price: '30000',
   },
   {
     id: 'bd7acbefa-4-Admdon-aemd5-3ad5x3abb28ba',
     name: 'Addon 2',
     description: 'The Addmon two',
-    image: 'Addon two image url',
+    image: require('_assets/addon2.jpg'),
     price: '33000',
   },
   {
     id: 'bd7acbea-4-446c2-vAddon-3ad53sabb28ba',
     name: 'Addon 3',
     description: 'The Addon three',
-    image: 'Addon three image url',
+    image: require('_assets/addon3.jpg'),
     price: '45000',
   },
 ];
 
 const Item = ({content}) => {
   let {id, name, description, image, price} = content;
+
   return (
-    <View
+    <TouchableOpacity
+      onPress={() => this.props.navigation.navigate('Cart')}
       style={{
         flexDirection: 'row',
         marginTop: 10,
@@ -45,14 +55,14 @@ const Item = ({content}) => {
           width: 80,
           marginLeft: 10,
         }}>
-        <Text>{image}</Text>
+        <Image source={(require = image)} style={{height: 80, width: 80}} />
       </View>
       <View style={{paddingLeft: 5}}>
         <Text style={{fontWeight: 'bold'}}>{name}</Text>
         <Text>{description}</Text>
         <Text>{price}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
