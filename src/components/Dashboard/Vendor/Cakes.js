@@ -1,35 +1,57 @@
 import React, {Component} from 'react';
-import {
-  Text,
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Dimensions,
-  FlatList,
-} from 'react-native';
+import {Text, SafeAreaView, StyleSheet, View, FlatList} from 'react-native';
 import {connect} from 'react-redux';
-
-const height = Dimensions.get('window').height;
 
 const DATA = [
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
+    id: 'bd7acbdea-4-cake-aepd5-3ad53abb28ba',
+    name: 'Cake 1',
+    description: 'The cake one',
+    image: 'Cake one image url',
+    price: '30000',
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
+    id: 'bd7acbefa-4-cake-aaed5-3ad5x3abb28ba',
+    name: 'Cake 2',
+    description: 'The cake two',
+    image: 'Cake two image url',
+    price: '33000',
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
+    id: 'bd7acbea-4-446c2-cake-3ads53sabb28ba',
+    name: 'Cake 3',
+    description: 'The cake three',
+    image: 'Cake three image url',
+    price: '45000',
   },
 ];
 
-const Item = ({title}) => {
+const Item = ({content}) => {
+  let {id, name, description, image, price} = content;
   return (
-    <View>
-      <Text>{title}</Text>
+    <View
+      style={{
+        flexDirection: 'row',
+        marginTop: 10,
+        paddingBottom: 10,
+        borderBottomColor: 'grey',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+      }}>
+      <View
+        style={{
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: 'black',
+          height: 80,
+          width: 80,
+          marginLeft: 10,
+        }}>
+        <Text>{image}</Text>
+      </View>
+      <View style={{paddingLeft: 5}}>
+        <Text style={{fontWeight: 'bold'}}>{name}</Text>
+        <Text>{description}</Text>
+        <Text>{price}</Text>
+      </View>
     </View>
   );
 };
@@ -40,8 +62,8 @@ export class Cakes extends Component {
       <SafeAreaView style={styles.container}>
         <FlatList
           data={DATA}
-          renderItem={({item}) => <Item title={item.title} />}
-          keyExtractor={item => item.id}
+          renderItem={({item}) => <Item content={item} />}
+          listKey={(item, index) => 'D' + index.toString()}
         />
       </SafeAreaView>
     );

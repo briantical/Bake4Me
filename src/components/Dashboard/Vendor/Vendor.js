@@ -87,7 +87,7 @@ const Item = ({props}) => {
       <FlatList
         data={data}
         renderItem={() => <Item2 props={props} />}
-        keyExtractor={item => item.id}
+        keyExtractor={(item, index) => 'D' + index.toString()}
       />
     </View>
   );
@@ -123,7 +123,7 @@ export class Vendor extends Component {
         />
         <FlatList
           data={DATA}
-          renderItem={({item}) => <Item props={this.props} />}
+          renderItem={({props}) => <Item props={this.props} />}
           keyExtractor={item => item.id}
         />
       </SafeAreaView>
