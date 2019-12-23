@@ -10,34 +10,35 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 
-const DATA = [
+const snacks_data = [
   {
-    id: 'bd7acbdea-4-Snack-aled5-3ad53abb28ba',
+    id: 'bd7acbdea-4-snack-aepd5-3ad53abb28ba',
     name: 'Snack 1',
-    description: 'The Snack one',
+    description: 'The snack one',
     image: require('_assets/snack1.jpg'),
     price: '30000',
   },
   {
-    id: 'bd7acbefa-4-Snack-ajed;5-3ad5x3abb28ba',
+    id: 'bd7acbefa-4-snack-aaed5-3ad5x3abb28ba',
     name: 'Snack 2',
-    description: 'The Snack two',
+    description: 'The snack two',
     image: require('_assets/snack2.jpg'),
     price: '33000',
   },
   {
-    id: 'bd7acbea-4-44j6c2-Snack-3ad53sabb28ba',
+    id: 'bd7acbea-4-446c2-snack-3ads53sabb28ba',
     name: 'Snack 3',
-    description: 'The Snack three',
+    description: 'The snack three',
     image: require('_assets/snack3.jpg'),
     price: '45000',
   },
 ];
 
-const Item = ({content}) => {
+const SnacksComponent = ({content, componentProps}) => {
   let {id, name, description, image, price} = content;
   return (
     <TouchableOpacity
+      onPress={() => componentProps.navigation.navigate('Cart', {content})}
       style={{
         flexDirection: 'row',
         marginTop: 10,
@@ -66,12 +67,15 @@ const Item = ({content}) => {
 
 export class Snacks extends Component {
   render() {
+    const {componentProps} = this.props;
     return (
       <SafeAreaView style={styles.container}>
         <FlatList
-          data={DATA}
-          renderItem={({item}) => <Item content={item} />}
-          listKey={(item, index) => 'D' + index.toString()}
+          data={snacks_data}
+          renderItem={({item}) => (
+            <SnacksComponent content={item} componentProps={componentProps} />
+          )}
+          listKey={(item, index) => index.toString()}
         />
       </SafeAreaView>
     );

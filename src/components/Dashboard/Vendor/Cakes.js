@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 
-const DATA = [
+const cakes_data = [
   {
     id: 'bd7acbdea-4-cake-aepd5-3ad53abb28ba',
     name: 'Cake 1',
@@ -34,11 +34,11 @@ const DATA = [
   },
 ];
 
-const Item = ({content, props}) => {
+const CakesComponent = ({content, componentProps}) => {
   let {id, name, description, image, price} = content;
   return (
     <TouchableOpacity
-      onPress={() => props.navigation.navigate('Cart')}
+      onPress={() => componentProps.navigation.navigate('Cart', {content})}
       style={{
         flexDirection: 'row',
         marginTop: 10,
@@ -67,13 +67,15 @@ const Item = ({content, props}) => {
 
 export class Cakes extends Component {
   render() {
-    const {myprops} = this.props;
+    const {componentProps} = this.props;
     return (
       <SafeAreaView style={styles.container}>
         <FlatList
-          data={DATA}
-          renderItem={({item}) => <Item content={item} props={myprops} />}
-          listKey={(item, index) => 'D' + index.toString()}
+          data={cakes_data}
+          renderItem={({item}) => (
+            <CakesComponent content={item} componentProps={componentProps} />
+          )}
+          listKey={(item, index) => index.toString()}
         />
       </SafeAreaView>
     );

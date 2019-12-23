@@ -1,31 +1,47 @@
 import React, {Component} from 'react';
 import {View, Text, Image, SafeAreaView, Dimensions} from 'react-native';
 import {connect} from 'react-redux';
+import {CommonActions} from '@react-navigation/native';
 
-import {Button} from 'react-native-elements';
+import {Button, Icon} from 'react-native-elements';
 
-const image = require('_assets/cake1.jpg');
+import {setCartItems, increaseCount, decreaseCount} from '_actions';
 
 const width = Dimensions.get('window').width;
 
 export class Cart extends Component {
   render() {
+    const {
+      content: {id, name, description, image, price},
+    } = this.props.navigation.state.params;
+
+    const {count, increaseCount, decreaseCount} = this.props;
+
     return (
       <SafeAreaView>
-        <View style={{padding: 10}}>
-          <View>
+        <View style={{padding: 10, position: 'relative', zIndex: 0}}>
+          <Icon
+            name="closecircleo"
+            type="antdesign"
+            color="#C50069"
+            iconStyle={{zIndex: 2, position: 'absolute', top: 5, left: 10}}
+            onPress={() =>
+              this.props.navigation.dispatch(CommonActions.goBack())
+            }
+          />
+          <View style={{zIndex: -1}}>
             <Image
               source={(require = image)}
-              style={{height: 80, width: width - 10}}
+              style={{height: 80, width: width - 10, zIndex: -1}}
             />
           </View>
           <View style={{justifyContent: 'space-between', marginBottom: 10}}>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text style={{fontWeight: 'bold'}}>Cakey</Text>
-              <Text>20,000 Ush</Text>
+              <Text style={{fontWeight: 'bold'}}>{name}</Text>
+              <Text>{price}Ush</Text>
             </View>
-            <Text>Those cakey stuff</Text>
+            <Text>{description}</Text>
           </View>
           <View style={{marginBottom: 10}}>
             <Text style={{fontWeight: 'bold'}}>
@@ -88,14 +104,23 @@ export class Cart extends Component {
                 width: 200,
                 justifyContent: 'space-around',
               }}>
-              <Text style={{color: '#C50069', fontSize: 30}}>-</Text>
-              <Text style={{fontSize: 25}}>1</Text>
-              <Text style={{color: '#C50069', fontSize: 30}}>+</Text>
+              <Text
+                style={{color: '#C50069', fontSize: 30}}
+                onPress={() => decreaseCount(count)}>
+                -
+              </Text>
+              <Text style={{fontSize: 25}}>{count}</Text>
+              <Text
+                style={{color: '#C50069', fontSize: 30}}
+                onPress={() => increaseCount(count)}>
+                +
+              </Text>
             </View>
             <Button
               title="ADD TO CART"
               buttonStyle={{backgroundColor: '#C50069'}}
               containerStyle={{padding: 10}}
+              onPress={() => setCartItems({count, id})}
             />
           </View>
         </View>
@@ -104,8 +129,11 @@ export class Cart extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => {
+  const {cart, count} = state;
+  return {cart, count};
+};
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {setCartItems, increaseCount, decreaseCount};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

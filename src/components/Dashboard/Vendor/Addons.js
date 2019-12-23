@@ -10,36 +10,35 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 
-const DATA = [
+const addons_data = [
   {
-    id: 'bd7acbdea-4-Amdkdon-aed5-3ad53abb28ba',
+    id: 'bd7acbdea-4-addon-aepd5-3ad53abb28ba',
     name: 'Addon 1',
-    description: 'The Addon one',
+    description: 'The addon one',
     image: require('_assets/addon1.jpg'),
     price: '30000',
   },
   {
-    id: 'bd7acbefa-4-Admdon-aemd5-3ad5x3abb28ba',
+    id: 'bd7acbefa-4-addon-aaed5-3ad5x3abb28ba',
     name: 'Addon 2',
-    description: 'The Addmon two',
+    description: 'The addon two',
     image: require('_assets/addon2.jpg'),
     price: '33000',
   },
   {
-    id: 'bd7acbea-4-446c2-vAddon-3ad53sabb28ba',
+    id: 'bd7acbea-4-446c2-addon-3ads53sabb28ba',
     name: 'Addon 3',
-    description: 'The Addon three',
+    description: 'The addon three',
     image: require('_assets/addon3.jpg'),
     price: '45000',
   },
 ];
 
-const Item = ({content}) => {
+const AddonsComponent = ({content, componentProps}) => {
   let {id, name, description, image, price} = content;
-
   return (
     <TouchableOpacity
-      onPress={() => this.props.navigation.navigate('Cart')}
+      onPress={() => componentProps.navigation.navigate('Cart', {content})}
       style={{
         flexDirection: 'row',
         marginTop: 10,
@@ -68,12 +67,15 @@ const Item = ({content}) => {
 
 export class Addons extends Component {
   render() {
+    const {componentProps} = this.props;
     return (
       <SafeAreaView style={styles.container}>
         <FlatList
-          data={DATA}
-          renderItem={({item}) => <Item content={item} />}
-          listKey={(item, index) => 'D' + index.toString()}
+          data={addons_data}
+          renderItem={({item}) => (
+            <AddonsComponent content={item} componentProps={componentProps} />
+          )}
+          listKey={(item, index) => index.toString()}
         />
       </SafeAreaView>
     );

@@ -9,45 +9,47 @@ import {
 import {connect} from 'react-redux';
 import {Header, Icon, Tile} from 'react-native-elements';
 import {DrawerActions} from 'react-navigation-drawer';
-
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
-
-import {setScrollScreen, setScrollScreenIndex} from '_actions';
+import {setScrollScreen} from '_actions';
 
 import {Cakes, Snacks, Addons} from '_components';
-
 import * as screenNames from '_constants/screen_names';
 
 const height = Dimensions.get('window').height;
-
 const width = Dimensions.get('window').width;
+const initialLayout = {width};
 
-const initialLayout = {width: Dimensions.get('window').width};
-
-const DATA = [
+const first_data = [
   {
     id: 'first',
-    title: 'First flatlist',
+    title: 'First Componet',
   },
 ];
 
-const data = [{id: 'second', title: 'Second flatlist'}];
+const second_data = [
+  {
+    id: 'second',
+    title: 'Second Component',
+  },
+];
 
-const Item2 = ({props}) => {
-  let {screens, screensindex, setScrollScreenIndex} = props;
-  let index = screensindex;
-  let routes = screens;
+const TabsComponent = ({componentProps}) => {
+  let {screens, setScrollScreen} = componentProps;
+  let index = screens;
+  let routes = [
+    {key: 'cakes', title: 'Cakes'},
+    {key: 'snacks', title: 'Snacks'},
+    {key: 'addons', title: 'Addons'},
+  ];
 
-  console.log(props);
-
-  const FirstRoute = () => <Cakes myprops={props} />;
-  const SecondRoute = () => <Snacks myprops={props} />;
-  const ThirdRoute = () => <Addons myprops={props} />;
+  const CakesScreen = () => <Cakes componentProps={componentProps} />;
+  const SnacksScreen = () => <Snacks componentProps={componentProps} />;
+  const AddonsScreens = () => <Addons componentProps={componentProps} />;
 
   const renderScene = SceneMap({
-    cakes: FirstRoute,
-    snacks: SecondRoute,
-    addons: ThirdRoute,
+    cakes: CakesScreen,
+    snacks: SnacksScreen,
+    addons: AddonsScreens,
   });
 
   let renderTabBar = props => (
@@ -61,6 +63,7 @@ const Item2 = ({props}) => {
       bounces
     />
   );
+
   return (
     <>
       <Tile
@@ -76,20 +79,20 @@ const Item2 = ({props}) => {
         navigationState={{index, routes}}
         renderScene={renderScene}
         renderTabBar={renderTabBar}
-        onIndexChange={setScrollScreenIndex}
+        onIndexChange={setScrollScreen}
         initialLayout={initialLayout}
       />
     </>
   );
 };
 
-const Item = ({props}) => {
+const VendorComponent = ({componentProps}) => {
   return (
     <View style={styles.item}>
       <FlatList
-        data={data}
-        renderItem={() => <Item2 props={props} />}
-        keyExtractor={(item, index) => 'D' + index.toString()}
+        data={second_data}
+        renderItem={() => <TabsComponent componentProps={componentProps} />}
+        keyExtractor={(item, index) => index.toString()}
       />
     </View>
   );
@@ -124,8 +127,10 @@ export class Vendor extends Component {
           }
         />
         <FlatList
-          data={DATA}
-          renderItem={({props}) => <Item props={this.props} />}
+          data={first_data}
+          renderItem={({props}) => (
+            <VendorComponent componentProps={this.props} />
+          )}
           keyExtractor={item => item.id}
         />
       </SafeAreaView>
@@ -148,10 +153,10 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const {screens, screensindex} = state;
-  return {screens, screensindex};
+  const {screens} = state;
+  return {screens};
 };
 
-const mapDispatchToProps = {setScrollScreen, setScrollScreenIndex};
+const mapDispatchToProps = {setScrollScreen};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Vendor);
