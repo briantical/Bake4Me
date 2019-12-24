@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import {connect} from 'react-redux';
-import {Header, Icon, Tile} from 'react-native-elements';
+import {Header, Icon, Tile, Button} from 'react-native-elements';
 import {DrawerActions} from 'react-navigation-drawer';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {setScrollScreen} from '_actions';
@@ -100,6 +100,8 @@ const VendorComponent = ({componentProps}) => {
 
 export class Vendor extends Component {
   render() {
+    let {count, price, show} = this.props.navigation.state.params;
+    console.log(this.props.navigation.state);
     return (
       <SafeAreaView style={{flex: 1}}>
         <Header
@@ -133,6 +135,13 @@ export class Vendor extends Component {
           )}
           keyExtractor={item => item.id}
         />
+        {show ? (
+          <Button
+            buttonStyle={{backgroundColor: '#C50069'}}
+            containerStyle={{padding: 10}}
+            title={count + ' Item  VIEW ORDER ' + price + 'Ush'}
+          />
+        ) : null}
       </SafeAreaView>
     );
   }
@@ -153,8 +162,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const {screens} = state;
-  return {screens};
+  const {screens, cart} = state;
+  return {screens, cart};
 };
 
 const mapDispatchToProps = {setScrollScreen};

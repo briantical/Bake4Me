@@ -10,12 +10,40 @@ import {setCartItems, increaseCount, decreaseCount} from '_actions';
 const width = Dimensions.get('window').width;
 
 export class Cart extends Component {
-  render() {
-    const {
-      content: {id, name, description, image, price},
-    } = this.props.navigation.state.params;
+  setOrder = () => {
+    let {
+      setCartItems,
+      count,
+      navigation: {
+        state: {
+          params: {
+            content: {id, price},
+          },
+        },
+      },
+    } = this.props;
 
-    const {count, increaseCount, decreaseCount} = this.props;
+    setCartItems({count, id});
+    this.props.navigation.navigate('_Vendor', {
+      count,
+      price: price * count,
+      show: true,
+    });
+  };
+
+  render() {
+    let {
+      increaseCount,
+      decreaseCount,
+      count,
+      navigation: {
+        state: {
+          params: {
+            content: {id, name, description, image, price},
+          },
+        },
+      },
+    } = this.props;
 
     return (
       <SafeAreaView>
@@ -120,7 +148,7 @@ export class Cart extends Component {
               title="ADD TO CART"
               buttonStyle={{backgroundColor: '#C50069'}}
               containerStyle={{padding: 10}}
-              onPress={() => setCartItems({count, id})}
+              onPress={() => this.setOrder()}
             />
           </View>
         </View>

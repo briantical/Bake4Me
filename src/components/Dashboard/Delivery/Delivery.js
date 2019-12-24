@@ -15,6 +15,7 @@ import {Header, Input, Button, Icon} from 'react-native-elements';
 
 export class Delivery extends Component {
   render() {
+    let params = {show: false, count: 0, price: 0};
     return (
       <SafeAreaView>
         <View style={{height}}>
@@ -53,7 +54,7 @@ export class Delivery extends Component {
             title="See Vendor"
             buttonStyle={{backgroundColor: '#C50069'}}
             containerStyle={{padding: 10}}
-            onPress={() => this.props.navigation.navigate('Vendor')}
+            onPress={() => this.props.navigation.navigate('_Vendor', {params})}
           />
         </View>
       </SafeAreaView>

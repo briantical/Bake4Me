@@ -9,7 +9,7 @@ import {DeliveryNavigator, InfoNavigator, VendorNavigator} from './Main/';
 import * as screenNames from '_constants/screen_names';
 
 const RouteConfigs = {
-  [screenNames.DELIVERY]: {
+  [screenNames.DELIVERY_NAVIGATOR]: {
     screen: DeliveryNavigator,
     navigationOptions: {
       drawerIcon: ({tintColor}) => (
@@ -17,7 +17,7 @@ const RouteConfigs = {
       ),
     },
   },
-  [screenNames.VENDOR]: {
+  [screenNames.VENDOR_NAVIGATOR]: {
     screen: VendorNavigator,
     navigationOptions: {
       drawerIcon: ({tintColor}) => (
@@ -25,7 +25,7 @@ const RouteConfigs = {
       ),
     },
   },
-  [screenNames.DEALS]: {
+  [screenNames.DEALS_NAVIGATOR]: {
     screen: Deals,
     navigationOptions: {
       drawerIcon: ({tintColor}) => (
@@ -33,15 +33,15 @@ const RouteConfigs = {
       ),
     },
   },
-  [screenNames.ACCOUNT]: {
+  [screenNames.ACCOUNT_NAVIGATOR]: {
     screen: Account,
     navigationOptions: {
       drawerIcon: ({tintColor}) => (
-        <Icon name="user" type="evilicon" color={tintColor} />
+        <Icon name="account" type="material-community" color={tintColor} />
       ),
     },
   },
-  [screenNames.ORDERS]: {
+  [screenNames.ORDERS_NAVIGATOR]: {
     screen: Orders,
     navigationOptions: {
       drawerIcon: ({tintColor}) => (
@@ -50,7 +50,7 @@ const RouteConfigs = {
     },
   },
 
-  [screenNames.SETTINGS]: {
+  [screenNames.SETTINGS_NAVIGATOR]: {
     screen: Settings,
     navigationOptions: {
       drawerIcon: ({tintColor}) => (
@@ -58,7 +58,7 @@ const RouteConfigs = {
       ),
     },
   },
-  [screenNames.LIVE_CHAT]: {
+  [screenNames.LIVECHAT_NAVIGATOR]: {
     screen: Live_Chat,
     navigationOptions: {
       drawerIcon: ({tintColor}) => (
@@ -66,7 +66,7 @@ const RouteConfigs = {
       ),
     },
   },
-  [screenNames.INFO]: {
+  [screenNames.INFO_NAVIGATOR]: {
     screen: InfoNavigator,
     navigationOptions: {
       drawerIcon: ({tintColor}) => (
