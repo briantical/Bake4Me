@@ -5,7 +5,12 @@ import {CommonActions} from '@react-navigation/native';
 
 import {Button, Icon} from 'react-native-elements';
 
-import {setCartItems, increaseCount, decreaseCount} from '_actions';
+import {
+  setCartItems,
+  updateCartItems,
+  increaseCount,
+  decreaseCount,
+} from '_actions';
 
 const width = Dimensions.get('window').width;
 
@@ -13,6 +18,7 @@ export class Cart extends Component {
   setOrder = () => {
     let {
       setCartItems,
+      updateCartItems,
       count,
       navigation: {
         state: {
@@ -23,10 +29,8 @@ export class Cart extends Component {
       },
     } = this.props;
 
-    setCartItems({count, id});
+    setCartItems({count, id, price});
     this.props.navigation.navigate('_Vendor', {
-      count,
-      price: price * count,
       show: true,
     });
   };
@@ -162,6 +166,11 @@ const mapStateToProps = state => {
   return {cart, count};
 };
 
-const mapDispatchToProps = {setCartItems, increaseCount, decreaseCount};
+const mapDispatchToProps = {
+  setCartItems,
+  updateCartItems,
+  increaseCount,
+  decreaseCount,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

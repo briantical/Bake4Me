@@ -100,8 +100,25 @@ const VendorComponent = ({componentProps}) => {
 
 export class Vendor extends Component {
   render() {
-    let {count, price, show} = this.props.navigation.state.params;
-    console.log(this.props.navigation.state);
+    let {
+      cart,
+      navigation: {
+        state: {
+          params: {show},
+        },
+      },
+    } = this.props;
+
+    let count = cart.length;
+
+    // let price = cart.map((item) =>{
+
+    //   item.price
+    // })
+    let totalprice = cart.reduce(function(prev, cur) {
+      return prev + cur.count * cur.price;
+    }, 0);
+
     return (
       <SafeAreaView style={{flex: 1}}>
         <Header
@@ -139,7 +156,7 @@ export class Vendor extends Component {
           <Button
             buttonStyle={{backgroundColor: '#C50069'}}
             containerStyle={{padding: 10}}
-            title={count + ' Item  VIEW ORDER ' + price + 'Ush'}
+            title={count + ' Item  VIEW ORDER ' + totalprice + ' Ush'}
           />
         ) : null}
       </SafeAreaView>

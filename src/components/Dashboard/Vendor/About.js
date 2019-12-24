@@ -25,7 +25,7 @@ export class About extends Component {
               name="arrow-back"
               color="#fff"
               onPress={() => {
-                this.props.navigation.navigate('Vendor');
+                this.props.navigation.navigate('_Vendor');
               }}
             />
           }
