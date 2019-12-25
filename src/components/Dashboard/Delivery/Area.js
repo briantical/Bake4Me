@@ -39,7 +39,9 @@ export class Area extends Component {
                 key={index}
                 title={area}
                 bottomDivider
-                onPress={() => this.props.navigation.navigate('Vendor')}
+                onPress={() =>
+                  this.props.navigation.navigate('_Vendor', {show: false, area})
+                }
               />
             ))}
           </View>

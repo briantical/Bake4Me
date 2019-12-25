@@ -104,20 +104,18 @@ export class Vendor extends Component {
       cart,
       navigation: {
         state: {
-          params: {show},
+          params: {show, area = '...'},
         },
       },
     } = this.props;
 
     let count = cart.length;
 
-    // let price = cart.map((item) =>{
-
-    //   item.price
-    // })
     let totalprice = cart.reduce(function(prev, cur) {
       return prev + cur.count * cur.price;
     }, 0);
+
+    console.log(area);
 
     return (
       <SafeAreaView style={{flex: 1}}>
@@ -133,7 +131,7 @@ export class Vendor extends Component {
             />
           }
           centerComponent={{
-            text: 'Delivery to Nakasero',
+            text: 'Delivery to ' + area,
             style: {color: '#fff', fontWeight: 'bold'},
           }}
           rightComponent={
@@ -157,6 +155,7 @@ export class Vendor extends Component {
             buttonStyle={{backgroundColor: '#C50069'}}
             containerStyle={{padding: 10}}
             title={count + ' Item  VIEW ORDER ' + totalprice + ' Ush'}
+            onPress={() => this.props.navigation.navigate('OrderDetails')}
           />
         ) : null}
       </SafeAreaView>

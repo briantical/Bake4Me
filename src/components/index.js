@@ -7,6 +7,8 @@ export {
   Info,
   Live_Chat,
   Orders,
+  OrderDetails,
+  NoOrders,
   Settings,
   Vendor,
   Area,

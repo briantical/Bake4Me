@@ -2,9 +2,14 @@ import React from 'react';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import {Icon} from 'react-native-elements';
 
-import {Drawer, Account, Deals, Live_Chat, Orders, Settings} from '_components';
+import {Drawer, Account, Deals, Live_Chat, Settings} from '_components';
 
-import {DeliveryNavigator, InfoNavigator, VendorNavigator} from './Main/';
+import {
+  DeliveryNavigator,
+  InfoNavigator,
+  VendorNavigator,
+  OrdersNavigator,
+} from './Main/';
 
 import * as screenNames from '_constants/screen_names';
 
@@ -42,7 +47,7 @@ const RouteConfigs = {
     },
   },
   [screenNames.ORDERS_NAVIGATOR]: {
-    screen: Orders,
+    screen: OrdersNavigator,
     navigationOptions: {
       drawerIcon: ({tintColor}) => (
         <Icon name="page" type="foundation" color={tintColor} />

@@ -18,18 +18,17 @@ export class Cart extends Component {
   setOrder = () => {
     let {
       setCartItems,
-      updateCartItems,
       count,
       navigation: {
         state: {
           params: {
-            content: {id, price},
+            content: {id, name, description, image, price},
           },
         },
       },
     } = this.props;
 
-    setCartItems({count, id, price});
+    setCartItems({count, id, name, description, image, price});
     this.props.navigation.navigate('_Vendor', {
       show: true,
     });
