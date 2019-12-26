@@ -4,6 +4,7 @@ import {
   UPDATE_CART_ITEMS,
   DECREASE_COUNT,
   INCREASE_COUNT,
+  SET_COUNT,
 } from '_constants/action-types';
 
 export const setScrollScreen = screen => ({
@@ -28,5 +29,10 @@ export const increaseCount = count => ({
 
 export const decreaseCount = count => ({
   type: DECREASE_COUNT,
+  payload: count,
+});
+
+export const setCount = count => ({
+  type: SET_COUNT,
   payload: count,
 });

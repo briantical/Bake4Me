@@ -9,6 +9,7 @@ const navigationOptions = {
 const routeConfigs = {
   [screenNames.VENDOR]: {
     screen: Vendor,
+    params: {show: false},
     navigationOptions,
   },
   [screenNames.ABOUT]: {

@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {View, Text, Image, SafeAreaView, Dimensions} from 'react-native';
 import {connect} from 'react-redux';
-import {CommonActions} from '@react-navigation/native';
-
 import {Button, Icon} from 'react-native-elements';
 
 import {
+  setCount,
   setCartItems,
   updateCartItems,
   increaseCount,
@@ -15,6 +14,10 @@ import {
 const width = Dimensions.get('window').width;
 
 export class Cart extends Component {
+  componentDidMount() {
+    this.props.setCount(1);
+  }
+
   setOrder = () => {
     let {
       setCartItems,
@@ -56,9 +59,7 @@ export class Cart extends Component {
             type="antdesign"
             color="#C50069"
             iconStyle={{zIndex: 2, position: 'absolute', top: 5, left: 10}}
-            onPress={() =>
-              this.props.navigation.dispatch(CommonActions.goBack())
-            }
+            onPress={() => this.props.navigation.goBack()}
           />
           <View style={{zIndex: -1}}>
             <Image
@@ -161,13 +162,14 @@ export class Cart extends Component {
 }
 
 const mapStateToProps = state => {
-  const {cart, count} = state;
-  return {cart, count};
+  const {count} = state;
+  return {count};
 };
 
 const mapDispatchToProps = {
   setCartItems,
   updateCartItems,
+  setCount,
   increaseCount,
   decreaseCount,
 };

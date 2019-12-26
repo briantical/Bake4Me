@@ -104,7 +104,7 @@ export class Vendor extends Component {
       cart,
       navigation: {
         state: {
-          params: {show, area = '...'},
+          params: {show = false, area = '...'},
         },
       },
     } = this.props;
@@ -114,8 +114,6 @@ export class Vendor extends Component {
     let totalprice = cart.reduce(function(prev, cur) {
       return prev + cur.count * cur.price;
     }, 0);
-
-    console.log(area);
 
     return (
       <SafeAreaView style={{flex: 1}}>

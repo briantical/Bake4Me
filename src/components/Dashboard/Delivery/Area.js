@@ -20,7 +20,7 @@ export class Area extends Component {
                 name="arrow-back"
                 size={24}
                 color="#fff"
-                onPress={() => this.props.navigation.navigate('Delivery')}
+                onPress={() => this.props.navigation.navigate('City')}
               />
             }
             centerComponent={{
