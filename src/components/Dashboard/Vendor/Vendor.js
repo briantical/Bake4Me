@@ -3,8 +3,10 @@ import {
   SafeAreaView,
   Dimensions,
   View,
+  Text,
   FlatList,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {Header, Icon, Tile, Button} from 'react-native-elements';
@@ -120,18 +122,35 @@ export class Vendor extends Component {
         <Header
           backgroundColor="#C50069"
           leftComponent={
-            <Icon
-              name="menu"
-              color="#fff"
-              onPress={() =>
-                this.props.navigation.dispatch(DrawerActions.openDrawer())
-              }
-            />
+            <View style={{flexDirection: 'row'}}>
+              <Icon
+                name="menu"
+                color="#fff"
+                onPress={() =>
+                  this.props.navigation.dispatch(DrawerActions.openDrawer())
+                }
+              />
+              <TouchableOpacity
+                style={{marginLeft: 20}}
+                onPress={() => this.props.navigation.navigate('_Delivery')}>
+                <Text style={{color: '#FFF', fontWeight: 'bold', fontSize: 12}}>
+                  Delivery to
+                </Text>
+                <View style={{flexDirection: 'row'}}>
+                  <Text
+                    style={{
+                      color: '#FFF',
+                      fontWeight: 'bold',
+                      fontSize: 15,
+                      marginRight: 10,
+                    }}>
+                    {area}
+                  </Text>
+                  <Icon name="down" type="antdesign" color="#FFF" size={13} />
+                </View>
+              </TouchableOpacity>
+            </View>
           }
-          centerComponent={{
-            text: 'Delivery to ' + area,
-            style: {color: '#fff', fontWeight: 'bold'},
-          }}
           rightComponent={
             <Icon
               name="info"

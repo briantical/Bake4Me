@@ -15,23 +15,40 @@ const width = Dimensions.get('window').width;
 
 export class Cart extends Component {
   componentDidMount() {
-    this.props.setCount(1);
-  }
-
-  setOrder = () => {
     let {
-      setCartItems,
-      count,
+      setCount,
       navigation: {
         state: {
           params: {
-            content: {id, name, description, image, price},
+            content: {count},
+            exists,
           },
         },
       },
     } = this.props;
 
-    setCartItems({count, id, name, description, image, price});
+    exists ? setCount(count) : setCount(1);
+  }
+
+  setOrder = () => {
+    let {
+      setCartItems,
+      updateCartItems,
+      count,
+      navigation: {
+        state: {
+          params: {
+            content: {id, name, description, image, price},
+            exists,
+          },
+        },
+      },
+    } = this.props;
+
+    exists
+      ? updateCartItems({count, id, name, description, image, price})
+      : setCartItems({count, id, name, description, image, price});
+
     this.props.navigation.navigate('_Vendor', {
       show: true,
     });
@@ -45,7 +62,8 @@ export class Cart extends Component {
       navigation: {
         state: {
           params: {
-            content: {id, name, description, image, price},
+            content: {id, name, description, image, price, itemcount},
+            exists = false,
           },
         },
       },
@@ -149,7 +167,7 @@ export class Cart extends Component {
               </Text>
             </View>
             <Button
-              title="ADD TO CART"
+              title={exists ? 'UPDATE CART' : 'ADD TO CART'}
               buttonStyle={{backgroundColor: '#C50069'}}
               containerStyle={{padding: 10}}
               onPress={() => this.setOrder()}

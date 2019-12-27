@@ -17,6 +17,7 @@ const cakes_data = [
     description: 'The cake one',
     image: require('_assets/cake1.jpg'),
     price: '30000',
+    count: 0,
   },
   {
     id: 'bd7acbefa-4-cake-aaed5-3ad5x3abb28ba',
@@ -24,6 +25,7 @@ const cakes_data = [
     description: 'The cake two',
     image: require('_assets/cake2.jpg'),
     price: '33000',
+    count: 0,
   },
   {
     id: 'bd7acbea-4-446c2-cake-3ads53sabb28ba',
@@ -31,11 +33,12 @@ const cakes_data = [
     description: 'The cake three',
     image: require('_assets/cake3.jpg'),
     price: '45000',
+    count: 0,
   },
 ];
 
 const CakesComponent = ({content, componentProps}) => {
-  let {id, name, description, image, price} = content;
+  let {id, name, description, image, price, count} = content;
   return (
     <TouchableOpacity
       onPress={() => componentProps.navigation.navigate('Cart', {content})}

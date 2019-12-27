@@ -17,6 +17,7 @@ const addons_data = [
     description: 'The addon one',
     image: require('_assets/addon1.jpg'),
     price: '30000',
+    count: 0,
   },
   {
     id: 'bd7acbefa-4-addon-aaed5-3ad5x3abb28ba',
@@ -24,6 +25,7 @@ const addons_data = [
     description: 'The addon two',
     image: require('_assets/addon2.jpg'),
     price: '33000',
+    count: 0,
   },
   {
     id: 'bd7acbea-4-446c2-addon-3ads53sabb28ba',
@@ -31,11 +33,12 @@ const addons_data = [
     description: 'The addon three',
     image: require('_assets/addon3.jpg'),
     price: '45000',
+    count: 0,
   },
 ];
 
 const AddonsComponent = ({content, componentProps}) => {
-  let {id, name, description, image, price} = content;
+  let {id, name, description, image, price, count} = content;
   return (
     <TouchableOpacity
       onPress={() => componentProps.navigation.navigate('Cart', {content})}

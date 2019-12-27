@@ -37,12 +37,18 @@ export class OrderDetails extends Component {
               style: {color: '#fff', fontWeight: 'bold'},
             }}
           />
-          {cart.map((item, index) => {
-            let {count, description, id, image, name, price} = item;
+          {cart.map((content, index) => {
+            let {count, description, id, image, name, price} = content;
             return (
-              <View
+              <TouchableOpacity
                 style={{padding: 10, justifyContent: 'space-between'}}
-                key={index}>
+                key={index}
+                onPress={() =>
+                  this.props.navigation.navigate('Cart', {
+                    content,
+                    exists: true,
+                  })
+                }>
                 <View
                   style={{
                     flexDirection: 'row',
@@ -64,7 +70,7 @@ export class OrderDetails extends Component {
                 <View>
                   <Text>{description}</Text>
                 </View>
-              </View>
+              </TouchableOpacity>
             );
           })}
 
