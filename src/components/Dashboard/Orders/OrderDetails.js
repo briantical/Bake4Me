@@ -117,7 +117,7 @@ export class OrderDetails extends Component {
             title="PROCEED TO CHECKOUT"
             buttonStyle={{backgroundColor: '#C50069'}}
             containerStyle={{padding: 10, flex: 1}}
-            onPress={() => this.props.navigation.navigate('Vendor')}
+            onPress={() => this.props.navigation.navigate('Checkout')}
           />
         </View>
       </SafeAreaView>

@@ -1,5 +1,5 @@
 import {createStackNavigator} from 'react-navigation-stack';
-import {Orders, OrderDetails, NoOrders} from '_components';
+import {Orders, OrderDetails, NoOrders, Checkout} from '_components';
 import * as screenNames from '_constants/screen_names';
 
 const navigationOptions = {
@@ -17,6 +17,10 @@ const routeConfigs = {
   },
   [screenNames.NOORDERS]: {
     screen: NoOrders,
+    navigationOptions,
+  },
+  [screenNames.CHECKOUT]: {
+    screen: Checkout,
     navigationOptions,
   },
 };

@@ -24,4 +24,5 @@ export {
   Cart,
   Snacks,
   Drawer,
+  Checkout,
 } from './Dashboard';

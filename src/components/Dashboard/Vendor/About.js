@@ -29,6 +29,10 @@ export class About extends Component {
               }}
             />
           }
+          centerComponent={{
+            text: 'About',
+            style: {color: '#fff', fontWeight: 'bold'},
+          }}
         />
         <ScrollView style={{height}}>
           <Tile

@@ -53,9 +53,7 @@ export class Delivery extends Component {
             title="See Vendor"
             buttonStyle={{backgroundColor: '#C50069'}}
             containerStyle={{padding: 10}}
-            onPress={() =>
-              this.props.navigation.navigate('_Vendor', {show: false})
-            }
+            onPress={() => this.props.navigation.navigate('_Vendor')}
           />
         </View>
       </SafeAreaView>

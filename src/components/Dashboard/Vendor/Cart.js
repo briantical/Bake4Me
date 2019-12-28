@@ -17,17 +17,21 @@ export class Cart extends Component {
   componentDidMount() {
     let {
       setCount,
+      cart,
       navigation: {
         state: {
           params: {
-            content: {count},
+            content: {id},
             exists,
           },
         },
       },
     } = this.props;
 
-    exists ? setCount(count) : setCount(1);
+    let cartitem = exists ? cart.filter(item => item.id == id) : [];
+    let count = cartitem.length != 0 ? cartitem[0].count : 1;
+
+    exists && cart.some(item => item.id == id) ? setCount(count) : setCount(1);
   }
 
   setOrder = () => {
@@ -62,7 +66,7 @@ export class Cart extends Component {
       navigation: {
         state: {
           params: {
-            content: {id, name, description, image, price, itemcount},
+            content: {id, name, description, image, price},
             exists = false,
           },
         },
@@ -94,20 +98,25 @@ export class Cart extends Component {
             <Text>{description}</Text>
           </View>
           <View style={{marginBottom: 10}}>
-            <Text style={{fontWeight: 'bold'}}>
-              How would you like your cake?
-            </Text>
-            <Text>Required</Text>
-            <Text>Options</Text>
-            <Text>Select one</Text>
+            <View
+              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <Text style={{fontWeight: 'bold'}}>
+                How would you like your cake?
+              </Text>
+              <Text>Required</Text>
+            </View>
+            <View style={{flexDirection: 'row'}}>
+              <Text>Options</Text>
+              <Text style={{marginLeft: 10}}>Select one</Text>
+            </View>
             <View>
               <View style={{flexDirection: 'row'}}>
-                <Text>X</Text>
+                <Text>[ ] </Text>
                 <Text>Strawberry</Text>
                 <Text>0 Ush</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
-                <Text>X</Text>
+                <Text>[ ] </Text>
                 <Text>Vanilla</Text>
                 <Text>0 Ush</Text>
               </View>
@@ -121,22 +130,22 @@ export class Cart extends Component {
             <Text>Optional</Text>
             <View>
               <View style={{flexDirection: 'row'}}>
-                <Text>X</Text>
+                <Text>[ ] </Text>
                 <Text>Coke 2Ltr</Text>
                 <Text>7000 Ush</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
-                <Text>X</Text>
+                <Text>[ ] </Text>
                 <Text>Fanta 2Ltr</Text>
                 <Text>7000 Ush</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
-                <Text>X</Text>
+                <Text>[ ] </Text>
                 <Text>Sprite 2Ltr</Text>
                 <Text>7000 Ush</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
-                <Text>X</Text>
+                <Text>[ ] </Text>
                 <Text>Stoney 2Ltr</Text>
                 <Text>7000 Ush</Text>
               </View>
@@ -180,8 +189,8 @@ export class Cart extends Component {
 }
 
 const mapStateToProps = state => {
-  const {count} = state;
-  return {count};
+  const {count, cart} = state;
+  return {count, cart};
 };
 
 const mapDispatchToProps = {

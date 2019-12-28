@@ -1,6 +1,4 @@
 import React from 'react';
-import {ActivityIndicator, StatusBar, View} from 'react-native';
-
 import AsyncStorage from '@react-native-community/async-storage';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -9,7 +7,6 @@ import * as screenNames from '_constants/screen_names';
 class AuthLoading extends React.Component {
   componentDidMount() {
     this._bootstrapAsync();
-    SplashScreen.hide();
   }
 
   // Fetch the token from storage then navigate to our appropriate place
@@ -25,12 +22,8 @@ class AuthLoading extends React.Component {
 
   // Render any loading content that you like here
   render() {
-    return (
-      <View>
-        <ActivityIndicator />
-        <StatusBar barStyle="default" />
-      </View>
-    );
+    SplashScreen.hide();
+    return null;
   }
 }
 

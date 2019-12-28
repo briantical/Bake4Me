@@ -35,13 +35,26 @@ const cakes_data = [
     price: '45000',
     count: 0,
   },
+  {
+    id: 'bd7acbea-4-49846c2-cake-3ads53sabb28ba',
+    name: 'Cake 4',
+    description: 'The cake four',
+    image: require('_assets/cake1.jpg'),
+    price: '25000',
+    count: 0,
+  },
 ];
 
 const CakesComponent = ({content, componentProps}) => {
   let {id, name, description, image, price, count} = content;
+  let {cart} = componentProps;
+  let exists = cart.some(item => item.id == id);
+
   return (
     <TouchableOpacity
-      onPress={() => componentProps.navigation.navigate('Cart', {content})}
+      onPress={() =>
+        componentProps.navigation.navigate('Cart', {content, exists})
+      }
       style={{
         flexDirection: 'row',
         marginTop: 10,
@@ -91,7 +104,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => {
+  let {cart} = state;
+  return {cart};
+};
 
 const mapDispatchToProps = {};
 

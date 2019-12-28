@@ -170,7 +170,7 @@ export class Vendor extends Component {
         {show ? (
           <Button
             buttonStyle={{backgroundColor: '#C50069'}}
-            containerStyle={{padding: 10}}
+            containerStyle={{margin: 10, backgroundColor: 'transparent'}}
             title={count + ' Item  VIEW ORDER ' + totalprice + ' Ush'}
             onPress={() => this.props.navigation.navigate('OrderDetails')}
           />

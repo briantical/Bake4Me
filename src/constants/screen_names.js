@@ -9,6 +9,7 @@ export const SIGNUP = 'Signup';
 export const ORDERS = '_Orders';
 export const ORDER_DETAILS = 'OrderDetails';
 export const NOORDERS = 'NoOrders';
+export const CHECKOUT = 'Checkout';
 export const VENDOR = '_Vendor';
 export const DRAWER = 'Drawer';
 export const CONTACT = 'Contact';

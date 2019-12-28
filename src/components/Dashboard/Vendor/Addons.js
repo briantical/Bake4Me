@@ -39,9 +39,13 @@ const addons_data = [
 
 const AddonsComponent = ({content, componentProps}) => {
   let {id, name, description, image, price, count} = content;
+  let {cart} = componentProps;
+  let exists = cart.some(item => item.id == id);
   return (
     <TouchableOpacity
-      onPress={() => componentProps.navigation.navigate('Cart', {content})}
+      onPress={() =>
+        componentProps.navigation.navigate('Cart', {content, exists})
+      }
       style={{
         flexDirection: 'row',
         marginTop: 10,
@@ -91,7 +95,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => {
+  let {cart} = state;
+  return {cart};
+};
 
 const mapDispatchToProps = {};
 
