@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, Image, SafeAreaView, Dimensions} from 'react-native';
 import {connect} from 'react-redux';
-import {Button, Icon} from 'react-native-elements';
+import {Button, Icon, CheckBox} from 'react-native-elements';
 
 import {
   setCount,
@@ -110,14 +110,39 @@ export class Cart extends Component {
               <Text style={{marginLeft: 10}}>Select one</Text>
             </View>
             <View>
-              <View style={{flexDirection: 'row'}}>
-                <Text>[ ] </Text>
-                <Text>Strawberry</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <CheckBox
+                  title="Click Here"
+                  checked={true}
+                  checkedColor="#C50069"
+                  title="Strawberry"
+                  containerStyle={{
+                    backgroundColor: 'transparent',
+                    borderColor: 'transparent',
+                  }}
+                />
                 <Text>0 Ush</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
-                <Text>[ ] </Text>
-                <Text>Vanilla</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <CheckBox
+                  title="Click Here"
+                  checked={false}
+                  title="Vanilla"
+                  containerStyle={{
+                    backgroundColor: 'transparent',
+                    borderColor: 'transparent',
+                  }}
+                />
                 <Text>0 Ush</Text>
               </View>
             </View>
@@ -129,24 +154,72 @@ export class Cart extends Component {
             </Text>
             <Text>Optional</Text>
             <View>
-              <View style={{flexDirection: 'row'}}>
-                <Text>[ ] </Text>
-                <Text>Coke 2Ltr</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <CheckBox
+                  checked={true}
+                  checkedColor="#C50069"
+                  title="Coke 2Ltr"
+                  containerStyle={{
+                    backgroundColor: 'transparent',
+                    borderColor: 'transparent',
+                  }}
+                />
                 <Text>7000 Ush</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
-                <Text>[ ] </Text>
-                <Text>Fanta 2Ltr</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <CheckBox
+                  title="Click Here"
+                  checked={false}
+                  title="Fanta 2Ltr"
+                  containerStyle={{
+                    backgroundColor: 'transparent',
+                    borderColor: 'transparent',
+                  }}
+                />
                 <Text>7000 Ush</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
-                <Text>[ ] </Text>
-                <Text>Sprite 2Ltr</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <CheckBox
+                  title="Click Here"
+                  checked={false}
+                  title="Sprite 2Ltr"
+                  containerStyle={{
+                    backgroundColor: 'transparent',
+                    borderColor: 'transparent',
+                  }}
+                />
                 <Text>7000 Ush</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
-                <Text>[ ] </Text>
-                <Text>Stoney 2Ltr</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <CheckBox
+                  title="Click Here"
+                  checked={false}
+                  title="Stoney 2Ltr"
+                  containerStyle={{
+                    backgroundColor: 'transparent',
+                    borderColor: 'transparent',
+                  }}
+                />
                 <Text>7000 Ush</Text>
               </View>
             </View>
