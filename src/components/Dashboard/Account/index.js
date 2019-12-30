@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 import {connect} from 'react-redux';
 import {DrawerActions} from 'react-navigation-drawer';
-import {Header, Icon, Input} from 'react-native-elements';
+import {Header, Icon, Input, CheckBox} from 'react-native-elements';
 
 export class Account extends Component {
   render() {
@@ -48,15 +48,15 @@ export class Account extends Component {
               flexDirection: 'row',
               alignItems: 'center',
             }}>
-            <View
-              style={{
-                height: 10,
-                width: 10,
-                marginRight: 10,
-                borderWidth: 1,
-                borderColor: 'black',
-              }}></View>
-            <Text>Yes, I want to recieve the Newsletter</Text>
+            <CheckBox
+              title="Click Here"
+              checked={false}
+              title="Yes, I want to recieve the Newsletter"
+              containerStyle={{
+                backgroundColor: 'transparent',
+                borderColor: 'transparent',
+              }}
+            />
           </View>
           <View style={{alignItems: 'center', padding: 10}}>
             <Text style={{color: '#C50069'}}>Change Password</Text>
