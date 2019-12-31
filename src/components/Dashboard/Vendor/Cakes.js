@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {connect} from 'react-redux';
+import SkeletonContent from 'react-native-skeleton-content-nonexpo';
 
 const cakes_data = [
   {
@@ -62,21 +63,21 @@ const CakesComponent = ({content, componentProps}) => {
         borderBottomColor: 'grey',
         borderBottomWidth: StyleSheet.hairlineWidth,
       }}>
-      <View
-        style={{
-          borderWidth: StyleSheet.hairlineWidth,
-          borderColor: 'black',
-          height: 80,
-          width: 80,
-          marginLeft: 10,
-        }}>
-        <Image source={(require = image)} style={{height: 80, width: 80}} />
-      </View>
-      <View style={{paddingLeft: 5}}>
-        <Text style={{fontWeight: 'bold'}}>{name}</Text>
-        <Text>{description}</Text>
-        <Text>{price}</Text>
-      </View>
+      <SkeletonContent isLoading={true} containerStyle={{flexDirection: 'row'}}>
+        <View
+          style={{
+            height: 80,
+            width: 80,
+            marginLeft: 10,
+          }}>
+          <Image source={(require = image)} style={{height: 80, width: 80}} />
+        </View>
+        <View style={{paddingLeft: 5, width: 300, height: 20}}>
+          <Text style={{fontWeight: 'bold'}}>{name}</Text>
+          <Text>{description}</Text>
+          <Text>{price}</Text>
+        </View>
+      </SkeletonContent>
     </TouchableOpacity>
   );
 };
