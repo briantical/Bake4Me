@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
 import {View, Dimensions} from 'react-native';
 import {connect} from 'react-redux';
-
-var {height} = Dimensions.get('window');
-
 import {Header, Input, Icon, ListItem} from 'react-native-elements';
 
-const areas = ['Bakuli', 'Wandegeya', 'Kamwokya', 'Ntinda'];
+let {height} = Dimensions.get('window');
 
 export class Area extends Component {
   render() {
+    let {
+      navigation: {
+        state: {
+          params: {areas = [], city = ''},
+        },
+      },
+    } = this.props;
+
     return (
       <View>
         <View style={{height}}>
@@ -29,7 +34,11 @@ export class Area extends Component {
             }}
           />
           <Input
-            placeholder="What area of Kampala are you in?"
+            placeholder={
+              areas.length != 0
+                ? 'What area of ' + city + ' are you in?'
+                : 'First choose a city'
+            }
             leftIcon={<Icon name="search" size={24} color="#C50069" />}
           />
 

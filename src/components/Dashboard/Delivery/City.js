@@ -1,12 +1,20 @@
 import React, {Component} from 'react';
 import {View, Dimensions} from 'react-native';
 import {connect} from 'react-redux';
-
-var {height} = Dimensions.get('window');
-
 import {Header, Input, Icon, ListItem} from 'react-native-elements';
 
-const cities = ['Kampala', 'Entebbe'];
+let {height} = Dimensions.get('window');
+
+let addresses = [
+  {
+    city: 'Kampala',
+    areas: ['Bakuli', 'Wandegeya', 'Kamwokya', 'Ntinda', 'Bugolobi'],
+  },
+  {
+    city: 'Entebbe',
+    areas: ['Kitoro', 'Zzana', 'Abaita', 'Namasuba'],
+  },
+];
 
 export class City extends Component {
   render() {
@@ -34,13 +42,18 @@ export class City extends Component {
           />
 
           <View>
-            {cities.map((city, i) => (
+            {addresses.map((address, i) => (
               <ListItem
                 key={i}
-                title={city}
+                title={address.city}
                 bottomDivider
                 chevron
-                onPress={() => this.props.navigation.navigate('Area')}
+                onPress={() =>
+                  this.props.navigation.navigate('Area', {
+                    areas: address.areas,
+                    city: address.city,
+                  })
+                }
               />
             ))}
           </View>

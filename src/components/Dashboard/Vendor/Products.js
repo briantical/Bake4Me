@@ -11,42 +11,7 @@ import {
 import {connect} from 'react-redux';
 import SkeletonContent from 'react-native-skeleton-content-nonexpo';
 
-const cakes_data = [
-  {
-    id: 'bd7acbdea-4-cake-aepd5-3ad53abb28ba',
-    name: 'Cake 1',
-    description: 'The cake one',
-    image: require('_assets/cake1.jpg'),
-    price: '30000',
-    count: 0,
-  },
-  {
-    id: 'bd7acbefa-4-cake-aaed5-3ad5x3abb28ba',
-    name: 'Cake 2',
-    description: 'The cake two',
-    image: require('_assets/cake2.jpg'),
-    price: '33000',
-    count: 0,
-  },
-  {
-    id: 'bd7acbea-4-446c2-cake-3ads53sabb28ba',
-    name: 'Cake 3',
-    description: 'The cake three',
-    image: require('_assets/cake3.jpg'),
-    price: '45000',
-    count: 0,
-  },
-  {
-    id: 'bd7acbea-4-49846c2-cake-3ads53sabb28ba',
-    name: 'Cake 4',
-    description: 'The cake four',
-    image: require('_assets/cake1.jpg'),
-    price: '25000',
-    count: 0,
-  },
-];
-
-const CakesComponent = ({content, componentProps}) => {
+const ProductsComponent = ({content, componentProps}) => {
   let {id, name, description, image, price, count} = content;
   let {cart} = componentProps;
   let exists = cart.some(item => item.id == id);
@@ -84,15 +49,15 @@ const CakesComponent = ({content, componentProps}) => {
   );
 };
 
-export class Cakes extends Component {
+export class Products extends Component {
   render() {
-    const {componentProps} = this.props;
+    const {componentProps, data} = this.props;
     return (
       <SafeAreaView style={styles.container}>
         <FlatList
-          data={cakes_data}
+          data={data}
           renderItem={({item}) => (
-            <CakesComponent content={item} componentProps={componentProps} />
+            <ProductsComponent content={item} componentProps={componentProps} />
           )}
           listKey={(item, index) => index.toString()}
         />
@@ -114,4 +79,4 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cakes);
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

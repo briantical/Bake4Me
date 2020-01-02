@@ -8,10 +8,9 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {DrawerActions} from 'react-navigation-drawer';
-
-var {height} = Dimensions.get('window');
-
 import {Header, Input, Button, Icon} from 'react-native-elements';
+
+let {height} = Dimensions.get('window');
 
 export class Delivery extends Component {
   render() {
@@ -39,8 +38,8 @@ export class Delivery extends Component {
             <Input label="City" placeholder="Kampala" disabled={true} />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Area')}>
-            <Input label="Area" placeholder="Nakasero" disabled={true} />
+            onPress={() => this.props.navigation.navigate('Area', {})}>
+            <Input label="Area" placeholder="Bbunga" disabled={true} />
           </TouchableOpacity>
           <TouchableOpacity
             style={{flexDirection: 'row', alignItems: 'center', padding: 5}}>

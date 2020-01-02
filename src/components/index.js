@@ -25,4 +25,5 @@ export {
   Snacks,
   Drawer,
   Checkout,
+  Products,
 } from './Dashboard';
