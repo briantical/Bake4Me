@@ -25,8 +25,8 @@ export class Account extends Component {
               style: {color: '#fff', fontWeight: 'bold'},
             }}
             rightComponent={{
-              text: 'LOG OUT',
-              style: {color: '#fff'},
+              text: 'Log Out',
+              style: {color: '#fff', fontWeight: 'bold'},
             }}
           />
           <View
@@ -36,12 +36,20 @@ export class Account extends Component {
               padding: 10,
             }}>
             <Text style={{fontWeight: 'bold'}}>Your account details</Text>
-            <Text style={{color: '#C50069'}}>Edit</Text>
+            <Text style={{color: '#C50069', fontWeight: 'bold'}}>Edit</Text>
           </View>
-          <Input label="First name" placeholder="Lutaaya" />
-          <Input label="Last name" placeholder="Brian Ivan" />
-          <Input label="Email" placeholder="lutbrianivan@gmail.com" />
-          <Input label="Mobile number" placeholder="+256 789566944" />
+          <Input label="First name" placeholder="Lutaaya" disabled={true} />
+          <Input label="Last name" placeholder="Brian Ivan" disabled={true} />
+          <Input
+            label="Email"
+            placeholder="lutbrianivan@gmail.com"
+            disabled={true}
+          />
+          <Input
+            label="Mobile number"
+            placeholder="+256 789566944"
+            disabled={true}
+          />
           <View
             style={{
               padding: 10,

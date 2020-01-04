@@ -42,7 +42,7 @@ export class Cart extends Component {
       navigation: {
         state: {
           params: {
-            content: {id, name, description, image, price},
+            content: {id, name, description, image, price, required, options},
             exists,
           },
         },
@@ -50,8 +50,26 @@ export class Cart extends Component {
     } = this.props;
 
     exists
-      ? updateCartItems({count, id, name, description, image, price})
-      : setCartItems({count, id, name, description, image, price});
+      ? updateCartItems({
+          count,
+          id,
+          name,
+          description,
+          image,
+          price,
+          required,
+          options,
+        })
+      : setCartItems({
+          count,
+          id,
+          name,
+          description,
+          image,
+          price,
+          required,
+          options,
+        });
 
     this.props.navigation.navigate('_Vendor', {
       show: true,
@@ -66,7 +84,7 @@ export class Cart extends Component {
       navigation: {
         state: {
           params: {
-            content: {id, name, description, image, price},
+            content: {id, name, description, image, price, required, options},
             exists = false,
           },
         },
@@ -110,41 +128,28 @@ export class Cart extends Component {
               <Text style={{marginLeft: 10}}>Select one</Text>
             </View>
             <View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
-                <CheckBox
-                  title="Click Here"
-                  checked={true}
-                  checkedColor="#C50069"
-                  title="Strawberry"
-                  containerStyle={{
-                    backgroundColor: 'transparent',
-                    borderColor: 'transparent',
-                  }}
-                />
-                <Text>0 Ush</Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
-                <CheckBox
-                  title="Click Here"
-                  checked={false}
-                  title="Vanilla"
-                  containerStyle={{
-                    backgroundColor: 'transparent',
-                    borderColor: 'transparent',
-                  }}
-                />
-                <Text>0 Ush</Text>
-              </View>
+              {required.map((item, index) => {
+                return (
+                  <View
+                    key={index}
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}>
+                    <CheckBox
+                      checked={item.marked}
+                      checkedColor="#C50069"
+                      title={item.name}
+                      containerStyle={{
+                        backgroundColor: 'transparent',
+                        borderColor: 'transparent',
+                      }}
+                    />
+                    <Text>{item.cost + ' Ush'}</Text>
+                  </View>
+                );
+              })}
             </View>
           </View>
 
@@ -154,74 +159,28 @@ export class Cart extends Component {
             </Text>
             <Text>Optional</Text>
             <View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
-                <CheckBox
-                  checked={true}
-                  checkedColor="#C50069"
-                  title="Coke 2Ltr"
-                  containerStyle={{
-                    backgroundColor: 'transparent',
-                    borderColor: 'transparent',
-                  }}
-                />
-                <Text>7000 Ush</Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
-                <CheckBox
-                  title="Click Here"
-                  checked={false}
-                  title="Fanta 2Ltr"
-                  containerStyle={{
-                    backgroundColor: 'transparent',
-                    borderColor: 'transparent',
-                  }}
-                />
-                <Text>7000 Ush</Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
-                <CheckBox
-                  title="Click Here"
-                  checked={false}
-                  title="Sprite 2Ltr"
-                  containerStyle={{
-                    backgroundColor: 'transparent',
-                    borderColor: 'transparent',
-                  }}
-                />
-                <Text>7000 Ush</Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
-                <CheckBox
-                  title="Click Here"
-                  checked={false}
-                  title="Stoney 2Ltr"
-                  containerStyle={{
-                    backgroundColor: 'transparent',
-                    borderColor: 'transparent',
-                  }}
-                />
-                <Text>7000 Ush</Text>
-              </View>
+              {options.map((item, index) => {
+                return (
+                  <View
+                    key={index}
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}>
+                    <CheckBox
+                      checked={item.marked}
+                      checkedColor="#C50069"
+                      title={item.name}
+                      containerStyle={{
+                        backgroundColor: 'transparent',
+                        borderColor: 'transparent',
+                      }}
+                    />
+                    <Text>{item.cost + ' Ush'}</Text>
+                  </View>
+                );
+              })}
             </View>
           </View>
           <View

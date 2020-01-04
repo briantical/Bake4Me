@@ -8,18 +8,22 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import axios from 'axios';
 import {connect} from 'react-redux';
 import {Header, Icon, Tile, Button} from 'react-native-elements';
 import {DrawerActions} from 'react-navigation-drawer';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
-import {setScrollScreen} from '_actions';
 
+import {setScrollScreen} from '_actions';
 import {Products} from '_components';
 import * as screenNames from '_constants/screen_names';
 
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 const initialLayout = {width};
+
+const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMGRlZGNmMTQ3OGRiMDQxMTQ1MDlmMCIsImlhdCI6MTU3ODEzMTY2OCwiZXhwIjoxNTgwNzIzNjY4fQ.s8Fr5gaUtmOFs-sfNUAO4bCIY8UdWVHi2PmTS_XdurA';
 
 const first_data = [
   {
@@ -43,6 +47,40 @@ const cakes_data = [
     image: require('_assets/cake1.jpg'),
     price: '30000',
     count: 0,
+    required: [
+      {
+        marked: false,
+        name: 'Strawberry',
+        cost: 0,
+      },
+      {
+        marked: false,
+        name: 'Vanilla',
+        cost: 0,
+      },
+    ],
+    options: [
+      {
+        marked: false,
+        name: 'Coke 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Fanta 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Sprite 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Stoney 2Ltr',
+        cost: 7000,
+      },
+    ],
   },
   {
     id: 'bd7acbefa-4-cake-aaed5-3ad5x3abb28ba',
@@ -51,6 +89,40 @@ const cakes_data = [
     image: require('_assets/cake2.jpg'),
     price: '33000',
     count: 0,
+    required: [
+      {
+        marked: false,
+        name: 'Banana',
+        cost: 0,
+      },
+      {
+        marked: false,
+        name: 'Coconut',
+        cost: 0,
+      },
+    ],
+    options: [
+      {
+        marked: false,
+        name: 'Coke 1Ltr',
+        cost: 3500,
+      },
+      {
+        marked: false,
+        name: 'Fanta 1Ltr',
+        cost: 3500,
+      },
+      {
+        marked: false,
+        name: 'Sprite 1Ltr',
+        cost: 3500,
+      },
+      {
+        marked: false,
+        name: 'Stoney 1Ltr',
+        cost: 3500,
+      },
+    ],
   },
   {
     id: 'bd7acbea-4-446c2-cake-3ads53sabb28ba',
@@ -59,6 +131,40 @@ const cakes_data = [
     image: require('_assets/cake3.jpg'),
     price: '45000',
     count: 0,
+    required: [
+      {
+        marked: false,
+        name: 'Carrot',
+        cost: 0,
+      },
+      {
+        marked: false,
+        name: 'Burberry',
+        cost: 0,
+      },
+    ],
+    options: [
+      {
+        marked: false,
+        name: 'Minute Maid 500ml',
+        cost: 2000,
+      },
+      {
+        marked: false,
+        name: 'Fanta 500ml',
+        cost: 2000,
+      },
+      {
+        marked: false,
+        name: 'Sprite 500ml',
+        cost: 2000,
+      },
+      {
+        marked: false,
+        name: 'Stoney 500ml',
+        cost: 2000,
+      },
+    ],
   },
   {
     id: 'bd7acbea-4-49846c2-cake-3ads53sabb28ba',
@@ -67,6 +173,40 @@ const cakes_data = [
     image: require('_assets/cake1.jpg'),
     price: '25000',
     count: 0,
+    required: [
+      {
+        marked: false,
+        name: 'Strawberry',
+        cost: 0,
+      },
+      {
+        marked: false,
+        name: 'Coconut',
+        cost: 0,
+      },
+    ],
+    options: [
+      {
+        marked: false,
+        name: 'Minute Maid 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Fanta 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Sprite 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Stoney 2Ltr',
+        cost: 7000,
+      },
+    ],
   },
 ];
 
@@ -78,6 +218,40 @@ const snacks_data = [
     image: require('_assets/snack1.jpg'),
     price: '30000',
     count: 0,
+    required: [
+      {
+        marked: false,
+        name: 'Strawberry',
+        cost: 0,
+      },
+      {
+        marked: false,
+        name: 'Vanilla',
+        cost: 0,
+      },
+    ],
+    options: [
+      {
+        marked: false,
+        name: 'Coke 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Fanta 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Sprite 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Stoney 2Ltr',
+        cost: 7000,
+      },
+    ],
   },
   {
     id: 'bd7acbefa-4-snack-aaed5-3ad5x3abb28ba',
@@ -86,6 +260,40 @@ const snacks_data = [
     image: require('_assets/snack2.jpg'),
     price: '33000',
     itemcount: 0,
+    required: [
+      {
+        marked: false,
+        name: 'Strawberry',
+        cost: 0,
+      },
+      {
+        marked: false,
+        name: 'Vanilla',
+        cost: 0,
+      },
+    ],
+    options: [
+      {
+        marked: false,
+        name: 'Coke 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Fanta 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Sprite 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Stoney 2Ltr',
+        cost: 7000,
+      },
+    ],
   },
   {
     id: 'bd7acbea-4-446c2-snack-3ads53sabb28ba',
@@ -94,6 +302,40 @@ const snacks_data = [
     image: require('_assets/snack3.jpg'),
     price: '45000',
     count: 0,
+    required: [
+      {
+        marked: false,
+        name: 'Strawberry',
+        cost: 0,
+      },
+      {
+        marked: false,
+        name: 'Vanilla',
+        cost: 0,
+      },
+    ],
+    options: [
+      {
+        marked: false,
+        name: 'Coke 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Fanta 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Sprite 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Stoney 2Ltr',
+        cost: 7000,
+      },
+    ],
   },
 ];
 
@@ -105,6 +347,40 @@ const addons_data = [
     image: require('_assets/addon1.jpg'),
     price: '30000',
     count: 0,
+    required: [
+      {
+        marked: false,
+        name: 'Strawberry',
+        cost: 0,
+      },
+      {
+        marked: false,
+        name: 'Vanilla',
+        cost: 0,
+      },
+    ],
+    options: [
+      {
+        marked: false,
+        name: 'Coke 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Fanta 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Sprite 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Stoney 2Ltr',
+        cost: 7000,
+      },
+    ],
   },
   {
     id: 'bd7acbefa-4-addon-aaed5-3ad5x3abb28ba',
@@ -113,6 +389,40 @@ const addons_data = [
     image: require('_assets/addon2.jpg'),
     price: '33000',
     count: 0,
+    required: [
+      {
+        marked: false,
+        name: 'Strawberry',
+        cost: 0,
+      },
+      {
+        marked: false,
+        name: 'Vanilla',
+        cost: 0,
+      },
+    ],
+    options: [
+      {
+        marked: false,
+        name: 'Coke 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Fanta 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Sprite 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Stoney 2Ltr',
+        cost: 7000,
+      },
+    ],
   },
   {
     id: 'bd7acbea-4-446c2-addon-3ads53sabb28ba',
@@ -121,8 +431,59 @@ const addons_data = [
     image: require('_assets/addon3.jpg'),
     price: '45000',
     count: 0,
+    required: [
+      {
+        marked: false,
+        name: 'Strawberry',
+        cost: 0,
+      },
+      {
+        marked: false,
+        name: 'Vanilla',
+        cost: 0,
+      },
+    ],
+    options: [
+      {
+        marked: false,
+        name: 'Coke 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Fanta 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Sprite 2Ltr',
+        cost: 7000,
+      },
+      {
+        marked: false,
+        name: 'Stoney 2Ltr',
+        cost: 7000,
+      },
+    ],
   },
 ];
+
+const getCakes = () => {
+  let headers = {
+    Authorization: 'Bearer ' + token,
+  };
+  axios
+    .get(`http://localhost:3000/api/v1/cake/`, {headers})
+    .then(response => {
+      const {cakes} = response.data;
+      //console.log(cakes);
+      return cakes;
+    })
+    .catch(error => {
+      //console.log(error);
+      return error;
+    });
+};
 
 const TabsComponent = ({componentProps}) => {
   let {screens, setScrollScreen} = componentProps;
@@ -231,10 +592,20 @@ export class Vendor extends Component {
               <TouchableOpacity
                 style={{marginLeft: 20}}
                 onPress={() => this.props.navigation.navigate('_Delivery')}>
-                <Text style={{color: '#FFF', fontWeight: 'bold', fontSize: 12}}>
+                <Text
+                  style={{
+                    color: '#FFF',
+                    fontWeight: 'bold',
+                    fontSize: 12,
+                    width: 100,
+                  }}>
                   Delivery to
                 </Text>
-                <View style={{flexDirection: 'row'}}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}>
                   <Text
                     style={{
                       color: '#FFF',
@@ -244,7 +615,13 @@ export class Vendor extends Component {
                     }}>
                     {area}
                   </Text>
-                  <Icon name="down" type="antdesign" color="#FFF" size={13} />
+                  <Icon
+                    name="down"
+                    type="antdesign"
+                    color="#FFF"
+                    size={13}
+                    iconStyle={{fontWeight: 'bold'}}
+                  />
                 </View>
               </TouchableOpacity>
             </View>

@@ -1,5 +1,5 @@
 import {createStackNavigator} from 'react-navigation-stack';
-import {Signup, Profile} from '_components/Register';
+import {Signup} from '_components';
 import * as screenNames from '_constants/screen_names';
 
 const navigationOptions = {
@@ -9,10 +9,6 @@ const navigationOptions = {
 const RegisterNavigator = createStackNavigator({
   [screenNames.SIGNUP]: {
     screen: Signup,
-    navigationOptions,
-  },
-  [screenNames.PROFILE]: {
-    screen: Profile,
     navigationOptions,
   },
 });

@@ -1,5 +1,5 @@
 import {createStackNavigator} from 'react-navigation-stack';
-import {About, Addons, Cakes, Cart, Snacks, Vendor} from '_components';
+import {About, Cart, Vendor} from '_components';
 import * as screenNames from '_constants/screen_names';
 
 const navigationOptions = {
@@ -16,20 +16,8 @@ const routeConfigs = {
     screen: About,
     navigationOptions,
   },
-  [screenNames.ADDONS]: {
-    screen: Addons,
-    navigationOptions,
-  },
-  [screenNames.CAKES]: {
-    screen: Cakes,
-    navigationOptions,
-  },
   [screenNames.CART]: {
     screen: Cart,
-    navigationOptions,
-  },
-  [screenNames.SNACKS]: {
-    screen: Snacks,
     navigationOptions,
   },
 };

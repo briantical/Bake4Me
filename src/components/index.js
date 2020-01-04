@@ -1,5 +1,5 @@
-export {Profile, Signup} from './Register';
-export {default as Login} from './Login';
+export {Signup} from './Register';
+export {Login, Profile, ChangePassword} from './Login';
 export {
   Account,
   Deals,
@@ -19,10 +19,7 @@ export {
   Terms,
   Works,
   About,
-  Addons,
-  Cakes,
   Cart,
-  Snacks,
   Drawer,
   Checkout,
   Products,

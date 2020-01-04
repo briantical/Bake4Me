@@ -6,6 +6,7 @@ export const AREA = 'Area';
 export const LOGIN = 'Login';
 export const DEALS = 'Deals';
 export const SIGNUP = 'Signup';
+export const CHANGEPASSWORD = 'ChangePassword';
 export const ORDERS = '_Orders';
 export const ORDER_DETAILS = 'OrderDetails';
 export const NOORDERS = 'NoOrders';

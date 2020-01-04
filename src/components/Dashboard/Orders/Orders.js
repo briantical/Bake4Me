@@ -10,8 +10,8 @@ var {height} = Dimensions.get('window');
 export class Orders extends Component {
   render() {
     return (
-      <SafeAreaView style={{flex: 1}}>
-        <View style={{height}}>
+      <SafeAreaView>
+        <View>
           <Header
             backgroundColor="#C50069"
             leftComponent={
@@ -32,7 +32,7 @@ export class Orders extends Component {
           <Button
             title="See Vendor"
             buttonStyle={{backgroundColor: '#C50069'}}
-            containerStyle={{padding: 10, flex: 1}}
+            containerStyle={{padding: 10}}
             onPress={() =>
               this.props.navigation.navigate('_Vendor', {show: false})
             }

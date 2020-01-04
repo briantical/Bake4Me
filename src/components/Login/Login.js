@@ -4,11 +4,12 @@ import {connect} from 'react-redux';
 import {Input, Button} from 'react-native-elements';
 import {Formik} from 'formik';
 import axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const {height, width} = Dimensions.get('window');
 
-export class Signup extends Component {
-  signup = (email, password) => {
+export class Login extends Component {
+  login = (email, password) => {
     let params = {
       email,
       password,
@@ -18,17 +19,13 @@ export class Signup extends Component {
     };
 
     axios
-      .post(`http://localhost:3000/api/v1/auth/sign-up`, params, options)
-      .then(response => {
-        const {data} = response;
-        if (
-          data.message !==
-          'A user with the given username is already registered'
-        ) {
-          this.props.navigation.navigate('Profile');
-        } else {
-          const {message} = data;
-        }
+      .post(`http://localhost:3000/api/v1/auth/sign-in`, params, options)
+      .then(async response => {
+        const {
+          data: {token},
+        } = response;
+        this.props.navigation.navigate('Drawer');
+        await AsyncStorage.setItem(('token', token));
       })
       .catch(error => {
         console.log('The response' + JSON.stringify(error));
@@ -64,7 +61,7 @@ export class Signup extends Component {
           }}>
           <Formik
             initialValues={{email: '', password: ''}}
-            onSubmit={values => this.signup(values.email, values.password)}
+            onSubmit={values => this.login(values.email, values.password)}
             validate={values => validate(values)}>
             {({handleChange, handleSubmit, values, errors}) => (
               <View style={{width}}>
@@ -89,7 +86,7 @@ export class Signup extends Component {
                   {errors.message}
                 </Text>
                 <Button
-                  title="REGISTER"
+                  title="LOGIN"
                   titleStyle={{fontWeight: 'bold'}}
                   buttonStyle={{backgroundColor: '#C50069'}}
                   containerStyle={{padding: 10}}
@@ -97,8 +94,8 @@ export class Signup extends Component {
                 />
                 <Text
                   style={{color: '#C50069', alignSelf: 'center'}}
-                  onPress={() => this.props.navigation.navigate('Login')}>
-                  Login instead
+                  onPress={() => this.props.navigation.navigate('Signup')}>
+                  Create Account
                 </Text>
               </View>
             )}
@@ -122,4 +119,4 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

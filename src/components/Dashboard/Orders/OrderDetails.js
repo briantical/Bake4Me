@@ -39,6 +39,7 @@ export class OrderDetails extends Component {
           />
           {cart.map((content, index) => {
             let {count, description, id, image, name, price} = content;
+
             return (
               <TouchableOpacity
                 style={{padding: 10, justifyContent: 'space-between'}}
