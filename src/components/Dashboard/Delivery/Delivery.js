@@ -9,10 +9,26 @@ import {
 import {connect} from 'react-redux';
 import {DrawerActions} from 'react-navigation-drawer';
 import {Header, Input, Button, Icon} from 'react-native-elements';
+import GetLocation from 'react-native-get-location';
 
 let {height} = Dimensions.get('window');
 
 export class Delivery extends Component {
+  //Get current user location
+  getLocation = () => {
+    GetLocation.getCurrentPosition({
+      enableHighAccuracy: true,
+      timeout: 15000,
+    })
+      .then(location => {
+        console.log(location);
+      })
+      .catch(error => {
+        const {code, message} = error;
+        console.warn(code, message);
+      });
+  };
+
   render() {
     return (
       <SafeAreaView>
@@ -30,11 +46,13 @@ export class Delivery extends Component {
             }
             centerComponent={{
               text: 'Delivery Location',
-              style: {color: '#fff'},
+              style: {color: '#fff', fontWeight: 'bold'},
             }}
           />
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('City')}>
+            onPress={() => {
+              this.props.navigation.navigate('City');
+            }}>
             <Input label="City" placeholder="Kampala" disabled={true} />
           </TouchableOpacity>
           <TouchableOpacity
@@ -42,7 +60,8 @@ export class Delivery extends Component {
             <Input label="Area" placeholder="Bbunga" disabled={true} />
           </TouchableOpacity>
           <TouchableOpacity
-            style={{flexDirection: 'row', alignItems: 'center', padding: 5}}>
+            style={{flexDirection: 'row', alignItems: 'center', padding: 5}}
+            onPress={() => this.getLocation()}>
             <Icon name="find" type="antdesign" color="#C50069" />
             <Text style={{color: '#C50069', paddingLeft: 10}}>
               Use my currrent location
@@ -60,7 +79,10 @@ export class Delivery extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => {
+  let {token} = state;
+  return {token};
+};
 
 const mapDispatchToProps = {};
 

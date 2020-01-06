@@ -5,3 +5,5 @@ export const UPDATE_CART_ITEMS = 'UPDATE_CART_ITEMS';
 export const INCREASE_COUNT = 'INCREASE_COUNT';
 export const DECREASE_COUNT = 'DECREASE_COUNT';
 export const SET_COUNT = 'SET_COUNT';
+export const SET_TOKEN = 'SET_TOKEN';
+export const SET_USER = 'SET_USER';

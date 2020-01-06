@@ -21,7 +21,7 @@ const AuthNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: screenNames.REGISTER,
+    initialRouteName: screenNames.LOGIN,
   },
 );
 

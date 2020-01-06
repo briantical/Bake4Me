@@ -31,6 +31,8 @@
 	<string>UIStatusBarStyleLightContent</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Bake4Me needs to get your location</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Dimensions} from 'react-native';
+import {View, Dimensions, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {Header, Input, Icon, ListItem} from 'react-native-elements';
 
@@ -33,6 +33,7 @@ export class Area extends Component {
               style: {color: '#fff'},
             }}
           />
+          <View style={styles.autocompleteContainer}></View>
           <Input
             placeholder={
               areas.length != 0
@@ -59,6 +60,17 @@ export class Area extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  autocompleteContainer: {
+    flex: 1,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    zIndex: 1,
+  },
+});
 
 const mapStateToProps = state => ({});
 

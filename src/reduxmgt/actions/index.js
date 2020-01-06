@@ -5,6 +5,8 @@ import {
   DECREASE_COUNT,
   INCREASE_COUNT,
   SET_COUNT,
+  SET_TOKEN,
+  SET_USER,
 } from '_constants/action-types';
 
 export const setScrollScreen = screen => ({
@@ -35,4 +37,14 @@ export const decreaseCount = count => ({
 export const setCount = count => ({
   type: SET_COUNT,
   payload: count,
+});
+
+export const setToken = token => ({
+  type: SET_TOKEN,
+  payload: token,
+});
+
+export const setUser = user => ({
+  type: SET_USER,
+  payload: user,
 });
