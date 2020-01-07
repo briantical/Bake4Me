@@ -10,9 +10,17 @@ const readData = storage_key => {
       console.log(error);
       return error;
     }
-    console.log('Internal: ' + result);
     return result;
   });
 };
 
-export {readData, storeData};
+const setStateData = (storage_key, set_function) => {
+  AsyncStorage.getItem(storage_key, (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    set_function(result);
+  });
+};
+
+export {readData, storeData, setStateData};

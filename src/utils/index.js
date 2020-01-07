@@ -1,1 +1,1 @@
-export {readData, storeData} from './secureStorage';
+export {readData, storeData, setStateData} from './secureStorage';

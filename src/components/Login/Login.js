@@ -12,6 +12,8 @@ import {Input, Button} from 'react-native-elements';
 import {Formik} from 'formik';
 import axios from 'axios';
 
+//import {API_URL} from 'react-native-dotenv';
+
 import {setToken, setUser} from '_actions';
 
 import {storeData} from '_utils';
@@ -31,7 +33,7 @@ export class Login extends Component {
     };
 
     axios
-      .post(`http://localhost:3000/api/v1/auth/sign-in`, params, options)
+      .post(`http://192.168.89.183:3000/api/v1/auth/sign-in`, params, options)
       .then(response => {
         const {
           data: {
@@ -39,15 +41,17 @@ export class Login extends Component {
             user: {
               profile: {complete},
             },
+            user,
           },
         } = response;
+        storeData('token', token);
+        this.props.setToken(token);
+        //Asyncstorage doesnt accept objects
+        storeData('user', JSON.stringify(user));
+        this.props.setUser(user);
         complete
           ? this.props.navigation.navigate('Drawer')
           : this.props.navigation.navigate('Profile');
-
-        storeData('token', token);
-        this.props.setToken(token);
-        console.log(token);
       })
       .catch(error => {
         console.log('The response' + JSON.stringify(error));

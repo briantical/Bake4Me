@@ -86,7 +86,7 @@ const RouteConfigs = {
 };
 
 const DrawerNavigatorConfig = {
-  hideStatusBar: true,
+  hideStatusBar: false,
   contentComponent: props => <Drawer {...props} />,
   contentOptions: {
     activeTintColor: '#C50069',

@@ -2,6 +2,7 @@ import React from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import {connect} from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
+
 import {setToken, setUser} from '_actions';
 import * as screenNames from '_constants/screen_names';
 
@@ -12,19 +13,21 @@ class AuthLoading extends React.Component {
 
   // Fetch the token from storage then navigate to our appropriate place
   _bootstrapAsync = async () => {
-    let {setToken} = this.props;
-    AsyncStorage.getItem('token', (error, token) => {
+    let {setToken, setUser} = this.props;
+
+    AsyncStorage.multiGet(['token', 'user'], (error, results) => {
       if (error) {
         console.log(error);
         return error;
       }
-      setToken(token);
-      console.log('auth: ' + token);
+      let [token, user] = results;
+      setToken(token[1]);
+      setUser(JSON.parse(user[1]));
 
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
       this.props.navigation.navigate(
-        token ? screenNames.DRAWER : screenNames.AUTH,
+        token[1] && user[1] ? screenNames.DRAWER : screenNames.AUTH,
         //token ? screenNames.AUTH : screenNames.DRAWER,
       );
     });

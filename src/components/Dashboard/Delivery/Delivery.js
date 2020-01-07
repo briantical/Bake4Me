@@ -9,11 +9,24 @@ import {
 import {connect} from 'react-redux';
 import {DrawerActions} from 'react-navigation-drawer';
 import {Header, Input, Button, Icon} from 'react-native-elements';
+import AsyncStorage from '@react-native-community/async-storage';
 import GetLocation from 'react-native-get-location';
+
+import {setUser} from '_actions';
 
 let {height} = Dimensions.get('window');
 
 export class Delivery extends Component {
+  componentDidMount() {
+    let {setUser} = this.props;
+    AsyncStorage.getItem('user', (error, result) => {
+      if (error) {
+        return error;
+      }
+      setUser(JSON.parse(result));
+    });
+  }
+
   //Get current user location
   getLocation = () => {
     GetLocation.getCurrentPosition({
@@ -30,6 +43,11 @@ export class Delivery extends Component {
   };
 
   render() {
+    let {
+      user: {
+        profile: {location},
+      },
+    } = this.props;
     return (
       <SafeAreaView>
         <View style={{height}}>
@@ -57,7 +75,7 @@ export class Delivery extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('Area', {})}>
-            <Input label="Area" placeholder="Bbunga" disabled={true} />
+            <Input label="Area" placeholder={location} disabled={true} />
           </TouchableOpacity>
           <TouchableOpacity
             style={{flexDirection: 'row', alignItems: 'center', padding: 5}}
@@ -80,10 +98,10 @@ export class Delivery extends Component {
 }
 
 const mapStateToProps = state => {
-  let {token} = state;
-  return {token};
+  let {user} = state;
+  return {user};
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {setUser};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Delivery);

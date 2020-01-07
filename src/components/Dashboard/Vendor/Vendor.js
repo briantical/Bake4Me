@@ -562,10 +562,13 @@ const VendorComponent = ({componentProps}) => {
 export class Vendor extends Component {
   render() {
     let {
+      user: {
+        profile: {location},
+      },
       cart,
       navigation: {
         state: {
-          params: {show = false, area = '...'},
+          params: {show = false, area = location},
         },
       },
     } = this.props;
@@ -670,8 +673,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const {screens, cart} = state;
-  return {screens, cart};
+  const {screens, cart, token, user} = state;
+  return {screens, cart, token, user};
 };
 
 const mapDispatchToProps = {setScrollScreen};
