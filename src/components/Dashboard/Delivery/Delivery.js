@@ -12,6 +12,8 @@ import {Header, Input, Button, Icon} from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 import GetLocation from 'react-native-get-location';
 
+import {API_URL} from 'react-native-dotenv';
+
 import {setUser} from '_actions';
 
 let {height} = Dimensions.get('window');
