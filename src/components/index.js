@@ -23,4 +23,5 @@ export {
   Drawer,
   Checkout,
   Products,
+  Custom,
 } from './Dashboard';

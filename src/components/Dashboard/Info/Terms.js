@@ -21,7 +21,7 @@ export class Terms extends Component {
             }
             centerComponent={{
               text: 'Terms and Conditions',
-              style: {color: '#fff'},
+              style: {color: '#fff', fontWeight: 'bold'},
             }}
           />
           <Text> Terms </Text>

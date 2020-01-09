@@ -12,7 +12,7 @@ import {Input, Button} from 'react-native-elements';
 import {Formik} from 'formik';
 import axios from 'axios';
 
-//import {API_URL} from 'react-native-dotenv';
+import {API_URL} from 'react-native-dotenv';
 
 import {setToken, setUser} from '_actions';
 
@@ -33,7 +33,7 @@ export class Login extends Component {
     };
 
     axios
-      .post(`http://192.168.89.183:3000/api/v1/auth/sign-in`, params, options)
+      .post(`${API_URL}/api/v1/auth/sign-in`, params, options)
       .then(response => {
         const {
           data: {

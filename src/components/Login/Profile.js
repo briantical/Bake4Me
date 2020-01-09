@@ -13,6 +13,7 @@ import {Formik} from 'formik';
 import {Header, Icon, Input, Button} from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 import {storeData} from '_utils';
+import {API_URL} from 'react-native-dotenv';
 
 import {setToken, setUser} from '_actions';
 
@@ -44,7 +45,7 @@ export class Profile extends Component {
     };
 
     axios
-      .post(`http://localhost:3000/api/v1/cart/`, data, {headers}, options)
+      .post(`${API_URL}/api/v1/cart/`, data, {headers}, options)
       .then(response => {
         let {
           cart: {_id},
@@ -79,7 +80,7 @@ export class Profile extends Component {
     };
 
     axios
-      .put(`http://localhost:3000/api/v1/user/update`, data, {headers}, options)
+      .put(`${API_URL}/api/v1/user/update`, data, {headers}, options)
       .then(response => {
         const {user} = response.data;
 
@@ -97,6 +98,10 @@ export class Profile extends Component {
       });
   };
   render() {
+    let {
+      user: {email, profile: complete},
+    } = this.props;
+
     // Synchronous validation
     const validate = values => {
       const errors = {};
@@ -143,11 +148,15 @@ export class Profile extends Component {
                       <Icon
                         name="arrow-back"
                         color="#fff"
-                        onPress={() => this.props.navigation.goBack()}
+                        onPress={() =>
+                          this.props.navigation.navigate(
+                            complete ? 'Account' : 'Login',
+                          )
+                        }
                       />
                     }
                     centerComponent={{
-                      text: 'Complete Profile',
+                      text: complete ? 'Edit Profile' : 'Complete Profile',
                       style: {color: '#fff', fontWeight: 'bold'},
                     }}
                   />
@@ -168,7 +177,7 @@ export class Profile extends Component {
                   <Input
                     label="Email"
                     disabled={true}
-                    value="lutbrianivan@gmail.com"
+                    value={email}
                     textContentType="emailAddress"
                   />
                   <Input
@@ -198,7 +207,7 @@ export class Profile extends Component {
                   </Text>
 
                   <Button
-                    title="COMPLETE"
+                    title={complete ? 'UPDATE' : 'COMPLETE'}
                     titleStyle={{fontWeight: 'bold'}}
                     buttonStyle={{backgroundColor: '#C50069'}}
                     containerStyle={{padding: 10}}

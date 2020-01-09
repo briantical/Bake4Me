@@ -6,6 +6,14 @@ import {Header, Icon, Input, CheckBox} from 'react-native-elements';
 
 export class Account extends Component {
   render() {
+    let {
+      user: {
+        email,
+        profile: {fullName, location, phoneNumber, userName},
+        cart: {payment},
+      },
+    } = this.props;
+
     return (
       <SafeAreaView>
         <View>
@@ -36,18 +44,50 @@ export class Account extends Component {
               padding: 10,
             }}>
             <Text style={{fontWeight: 'bold'}}>Your account details</Text>
-            <Text style={{color: '#C50069', fontWeight: 'bold'}}>Edit</Text>
+            <Text
+              style={{color: '#C50069', fontWeight: 'bold'}}
+              onPress={() => this.props.navigation.navigate('Profile')}>
+              Edit
+            </Text>
           </View>
-          <Input label="First name" placeholder="Lutaaya" disabled={true} />
-          <Input label="Last name" placeholder="Brian Ivan" disabled={true} />
+          <Input
+            label="Full Name"
+            value={fullName}
+            autoCapitalize="none"
+            textContentType="name"
+            disabled={true}
+          />
+          <Input
+            label="Username"
+            value={userName}
+            autoCapitalize="none"
+            textContentType="username"
+            disabled={true}
+          />
           <Input
             label="Email"
-            placeholder="lutbrianivan@gmail.com"
+            disabled={true}
+            value={email}
+            textContentType="emailAddress"
             disabled={true}
           />
           <Input
             label="Mobile number"
-            placeholder="+256 789566944"
+            autoCapitalize="none"
+            value={phoneNumber}
+            textContentType="telephoneNumber"
+            disabled={true}
+          />
+          <Input
+            label="Payment choice"
+            autoCapitalize="none"
+            value={payment}
+            disabled={true}
+          />
+          <Input
+            label="Address"
+            value={location}
+            maxLength={10}
             disabled={true}
           />
           <View
@@ -58,7 +98,8 @@ export class Account extends Component {
             }}>
             <CheckBox
               title="Click Here"
-              checked={false}
+              checked={true}
+              checkedColor="#C50069"
               title="Yes, I want to recieve the Newsletter"
               containerStyle={{
                 backgroundColor: 'transparent',
@@ -67,7 +108,11 @@ export class Account extends Component {
             />
           </View>
           <View style={{alignItems: 'center', padding: 10}}>
-            <Text style={{color: '#C50069'}}>Change Password</Text>
+            <Text
+              style={{color: '#C50069'}}
+              onPress={() => this.props.navigation.navigate('ChangePassword')}>
+              Change Password
+            </Text>
           </View>
         </View>
       </SafeAreaView>
@@ -75,7 +120,10 @@ export class Account extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => {
+  const {user} = state;
+  return {user};
+};
 
 const mapDispatchToProps = {};
 

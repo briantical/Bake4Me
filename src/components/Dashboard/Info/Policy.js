@@ -21,7 +21,7 @@ export class Policy extends Component {
             }
             centerComponent={{
               text: 'Policy',
-              style: {color: '#fff'},
+              style: {color: '#fff', fontWeight: 'bold'},
             }}
           />
           <ScrollView style={{padding: 10}}>

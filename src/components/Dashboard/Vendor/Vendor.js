@@ -645,6 +645,19 @@ export class Vendor extends Component {
           )}
           keyExtractor={item => item.id}
         />
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            bottom: 60,
+            right: 20,
+            // borderColor: '#C50069',
+            // borderRadius: 50,
+            // height: 50,
+            // width: 50,
+          }}>
+          <Text style={{color: '#C50069'}}>+</Text>
+        </View>
         {show ? (
           <Button
             buttonStyle={{backgroundColor: '#C50069'}}

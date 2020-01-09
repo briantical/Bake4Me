@@ -12,6 +12,8 @@ import {Input, Button} from 'react-native-elements';
 import {Formik} from 'formik';
 import axios from 'axios';
 
+import {API_URL} from 'react-native-dotenv';
+
 const {height, width} = Dimensions.get('window');
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -27,7 +29,7 @@ export class Signup extends Component {
     };
 
     axios
-      .post(`http://localhost:3000/api/v1/auth/sign-up`, params, options)
+      .post(`${API_URL}/api/v1/auth/sign-up`, params, options)
       .then(response => {
         const {data} = response;
         if (

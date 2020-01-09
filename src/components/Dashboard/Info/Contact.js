@@ -21,7 +21,7 @@ export class Contact extends Component {
             }
             centerComponent={{
               text: 'Contact',
-              style: {color: '#fff'},
+              style: {color: '#fff', fontWeight: 'bold'},
             }}
           />
           <Text> Contact </Text>

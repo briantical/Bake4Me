@@ -29,6 +29,7 @@ export const SNACKS = 'Snacks';
 export const ADDONS = 'Addons';
 export const ABOUT = 'About';
 export const CART = 'Cart';
+export const CUSTOM = 'Custom';
 
 export const DELIVERY_NAVIGATOR = 'Delivery';
 export const VENDOR_NAVIGATOR = 'Vendor';

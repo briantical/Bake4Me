@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {SafeAreaView, Text, Dimensions, View, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 
-import {Header, Icon} from 'react-native-elements';
+import {Header, Icon, ListItem} from 'react-native-elements';
 import {DrawerActions} from 'react-navigation-drawer';
 import {Switch} from 'react-native-gesture-handler';
 
@@ -27,9 +27,10 @@ export class Settings extends Component {
             }
             centerComponent={{
               text: 'Settings',
-              style: {color: '#fff'},
+              style: {color: '#fff', fontWeight: 'bold'},
             }}
           />
+
           <View style={styles.listitem}>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -45,7 +46,7 @@ export class Settings extends Component {
             <Text>Push Notifications</Text>
             <Text style={styles.listitemtext}>Change Setting</Text>
           </View>
-          <View style={styles.listitem}>
+          <View style={[styles.listitem]}>
             <Text>Copyright c 2019 Bake4Me V 1.1</Text>
           </View>
         </View>

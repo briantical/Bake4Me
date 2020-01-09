@@ -38,7 +38,7 @@ export class Area extends Component {
             placeholder={
               areas.length != 0
                 ? 'What area of ' + city + ' are you in?'
-                : 'First choose a city'
+                : 'First choose your city'
             }
             leftIcon={<Icon name="search" size={24} color="#C50069" />}
           />

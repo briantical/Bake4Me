@@ -35,7 +35,7 @@ export class Info extends Component {
             }
             centerComponent={{
               text: 'Info',
-              style: {color: '#fff'},
+              style: {color: '#fff', fontWeight: 'bold'},
             }}
           />
           <View>
@@ -45,6 +45,7 @@ export class Info extends Component {
                 title={infoitem.Title}
                 bottomDivider
                 onPress={() => this.props.navigation.navigate(infoitem.Screen)}
+                chevron
               />
             ))}
           </View>

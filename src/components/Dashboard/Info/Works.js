@@ -20,7 +20,7 @@ export class Works extends Component {
             }
             centerComponent={{
               text: 'How it Works',
-              style: {color: '#fff'},
+              style: {color: '#fff', fontWeight: 'bold'},
             }}
           />
           <Text> How it works </Text>
