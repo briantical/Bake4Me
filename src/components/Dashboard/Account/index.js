@@ -3,8 +3,32 @@ import {SafeAreaView, Text, View} from 'react-native';
 import {connect} from 'react-redux';
 import {DrawerActions} from 'react-navigation-drawer';
 import {Header, Icon, Input, CheckBox} from 'react-native-elements';
+import axios from 'axios';
+import {API_URL} from 'react-native-dotenv';
+import {clearData} from '_utils';
 
 export class Account extends Component {
+  logout = () => {
+    let {token} = this.props;
+
+    let headers = {
+      Authorization: 'Bearer ' + token,
+    };
+
+    axios
+      .post(`${API_URL}/api/v1/auth/sign-out`, null, {headers})
+      .then(() => {
+        //Previous user incomplete user will be overwritten
+        //in Asyncstorage and state
+
+        clearData();
+        this.props.navigation.navigate('Login');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   render() {
     let {
       user: {
@@ -35,6 +59,7 @@ export class Account extends Component {
             rightComponent={{
               text: 'Log Out',
               style: {color: '#fff', fontWeight: 'bold'},
+              onPress: () => this.logout(),
             }}
           />
           <View
@@ -121,8 +146,8 @@ export class Account extends Component {
 }
 
 const mapStateToProps = state => {
-  const {user} = state;
-  return {user};
+  const {user, token} = state;
+  return {user, token};
 };
 
 const mapDispatchToProps = {};

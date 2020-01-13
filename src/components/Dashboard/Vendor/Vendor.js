@@ -645,19 +645,29 @@ export class Vendor extends Component {
           )}
           keyExtractor={item => item.id}
         />
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            bottom: 60,
-            right: 20,
-            // borderColor: '#C50069',
-            // borderRadius: 50,
-            // height: 50,
-            // width: 50,
-          }}>
-          <Text style={{color: '#C50069'}}>+</Text>
-        </View>
+        <Button
+          buttonStyle={{
+            borderColor: '#C50069',
+            backgroundColor: '#C50069',
+            height: 50,
+            width: 50,
+            borderRadius: 50,
+          }}
+          type="outline"
+          raised={true}
+          containerStyle={{
+            position: 'absolute',
+            zIndex: 2,
+            bottom: 50,
+            right: 50,
+            height: 50,
+            width: 50,
+            borderRadius: 50,
+          }}
+          title={'+'}
+          titleStyle={{color: '#FFF', fontWeight: 'bold'}}
+          onPress={() => this.props.navigation.navigate('Custom')}
+        />
         {show ? (
           <Button
             buttonStyle={{backgroundColor: '#C50069'}}
@@ -675,13 +685,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  scene: {
-    flex: 1,
-    height: height * 0.75,
-  },
   item: {
     flex: 1,
     position: 'relative',
+    zIndex: 0,
+    backgroundColor: 'transparent',
   },
 });
 

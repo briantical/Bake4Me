@@ -89,6 +89,7 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - QBImagePickerController (3.4.0)
   - RCTRequired (0.61.5)
   - RCTTypeSafety (0.61.5):
     - FBLazyVector (= 0.61.5)
@@ -304,12 +305,18 @@ PODS:
     - React
   - RNGestureHandler (1.5.2):
     - React
+  - RNImageCropPicker (0.26.2):
+    - QBImagePickerController
+    - React-Core
+    - React-RCTImage
+    - RSKImageCropper
   - RNReanimated (1.4.0):
     - React
   - RNScreens (1.0.0-alpha.23):
     - React
   - RNVectorIcons (6.6.0):
     - React
+  - RSKImageCropper (2.2.3)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -348,6 +355,7 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNFirebase (from `../node_modules/react-native-firebase/ios`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -369,6 +377,8 @@ SPEC REPOS:
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - nanopb
+    - QBImagePickerController
+    - RSKImageCropper
 
 EXTERNAL SOURCES:
   BVLinearGradient:
@@ -431,6 +441,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-firebase/ios"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNImageCropPicker:
+    :path: "../node_modules/react-native-image-crop-picker"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -461,6 +473,7 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: ef79a4728b864946a8aafdbab770d5294faf3b5f
   GoogleUtilities: 547a86735c6f0ee30ad17e94df4fc21f616b71cb
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
   React: b6a59ef847b2b40bb6e0180a97d0ca716969ac78
@@ -485,9 +498,11 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 8a2fadab0c6cc58d6a0629e24f978cc2ff3151fc
   RNFirebase: ac0de8b24c6f91ae9459575491ed6a77327619c6
   RNGestureHandler: 946a7691e41df61e2c4b1884deab41a4cdc3afff
+  RNImageCropPicker: 9d1a7eea4f8368fc479cbd2bf26459bd3c74d9aa
   RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
   RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
 PODFILE CHECKSUM: 745f74ef148059a37b9030f554a4d9d7e3d853fe

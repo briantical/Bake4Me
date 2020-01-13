@@ -14,6 +14,16 @@ const readData = storage_key => {
   });
 };
 
+const clearData = () => {
+  AsyncStorage.clear((result, error) => {
+    if (error) {
+      console.log('An error has occured while clearing login keys');
+      console.log('Error Details: ' + error);
+      return;
+    }
+  });
+};
+
 const setStateData = (storage_key, set_function) => {
   AsyncStorage.getItem(storage_key, (error, result) => {
     if (error) {
@@ -23,4 +33,4 @@ const setStateData = (storage_key, set_function) => {
   });
 };
 
-export {readData, storeData, setStateData};
+export {readData, storeData, setStateData, clearData};
