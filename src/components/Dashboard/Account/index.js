@@ -8,6 +8,12 @@ import {API_URL} from 'react-native-dotenv';
 import {clearData} from '_utils';
 
 export class Account extends Component {
+  constructor() {
+    super();
+    this.state = {
+      checked: true,
+    };
+  }
   logout = () => {
     let {token} = this.props;
 
@@ -123,12 +129,15 @@ export class Account extends Component {
             }}>
             <CheckBox
               title="Click Here"
-              checked={true}
+              checked={this.state.checked}
               checkedColor="#C50069"
               title="Yes, I want to recieve the Newsletter"
               containerStyle={{
                 backgroundColor: 'transparent',
                 borderColor: 'transparent',
+              }}
+              onPress={() => {
+                this.setState({checked: !this.state.checked});
               }}
             />
           </View>

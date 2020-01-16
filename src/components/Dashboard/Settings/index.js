@@ -1,15 +1,27 @@
 import React, {Component} from 'react';
-import {SafeAreaView, Text, Dimensions, View, StyleSheet} from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  Dimensions,
+  View,
+  StyleSheet,
+  Switch,
+} from 'react-native';
 import {connect} from 'react-redux';
 
-import {Header, Icon, ListItem} from 'react-native-elements';
+import {Header, Icon} from 'react-native-elements';
 import {DrawerActions} from 'react-navigation-drawer';
-import {Switch} from 'react-native-gesture-handler';
 
 var {height} = Dimensions.get('window');
 let subheight = height / 10;
 
 export class Settings extends Component {
+  constructor() {
+    super();
+    this.state = {
+      toggled: true,
+    };
+  }
   render() {
     return (
       <SafeAreaView>
@@ -35,7 +47,10 @@ export class Settings extends Component {
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Text>Load Images</Text>
-              <Switch value={true} />
+              <Switch
+                value={this.state.toggled}
+                onChange={() => this.setState({toggled: !this.state.toggled})}
+              />
             </View>
           </View>
           <View style={styles.listitem}>

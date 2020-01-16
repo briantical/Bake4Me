@@ -13,20 +13,39 @@ import ImagePicker from 'react-native-image-crop-picker';
 
 import {setCount, increaseCount, decreaseCount} from '_actions';
 
-const shapes = ['Round', 'Rectangle', 'Other'];
-const icings = ['Butter', 'Fondant', 'Other'];
+const shapes = [
+  {name: 'Round', selected: false},
+  {name: 'Rectangle', selected: false},
+  {name: 'Other', selected: false},
+];
+const icings = [
+  {name: 'Butter', selected: false},
+  {name: 'Fondant', selected: false},
+  {name: 'Other', selected: false},
+];
 const flavours = [
-  'Vanilla',
-  'Strawberry',
-  'Coconut',
-  'Lemon',
-  'Chocolate',
-  'Red Velvet',
+  {name: 'Vanilla', selected: false},
+  {name: 'Strawberry', selected: false},
+  {name: 'Coconut', selected: false},
+  {name: 'Lemon', selected: false},
+  {name: 'Chocolate', selected: false},
+  {name: 'Red Velvet', selected: false},
 ];
 
 const exists = false;
 
 export class Custom extends Component {
+  constructor() {
+    super();
+    this.state = {
+      shapes: {name: 'Round', selected: true},
+      icings: {name: 'Butter', selected: true},
+      tiers: 0,
+      flavours: {name: 'Vanilla', selected: true},
+      colours: 'Pink',
+      instructions: 'How would you like your cake?',
+    };
+  }
   componentDidMount() {
     this.props.setCount(1);
   }
@@ -40,6 +59,8 @@ export class Custom extends Component {
   };
   render() {
     let {count, increaseCount, decreaseCount} = this.props;
+    let {state} = this;
+
     return (
       <SafeAreaView style={{flex: 1}}>
         <KeyboardAvoidingView
@@ -49,13 +70,7 @@ export class Custom extends Component {
           <View style={{flex: 1}}>
             <Formik
               initialValues={{
-                shapes: {shape: 'round', selected: true},
-                icings: {icing: 'butter', selected: true},
-                tiers: 0,
-                flavours: {flavour: 'Vanilla', selected: true},
-                colours: 'Pink',
-                instructions: 'How would you like your cake?',
-                count: 0,
+                ...state,
               }}
               onSubmit={values => this.createCart(values)}
               validate={values => validate(values)}>
@@ -84,9 +99,14 @@ export class Custom extends Component {
                         return (
                           <CheckBox
                             key={index}
-                            checked={false}
+                            checked={shape.name == state.shapes.name}
                             checkedColor="#C50069"
-                            title={shape}
+                            title={shape.name}
+                            onPress={() => {
+                              this.setState({
+                                shapes: {name: shape.name, selected: true},
+                              });
+                            }}
                             containerStyle={{
                               backgroundColor: 'transparent',
                               borderColor: 'transparent',
@@ -103,12 +123,17 @@ export class Custom extends Component {
                         return (
                           <CheckBox
                             key={index}
-                            checked={false}
+                            checked={icing.name == state.icings.name}
                             checkedColor="#C50069"
-                            title={icing}
+                            title={icing.name}
                             containerStyle={{
                               backgroundColor: 'transparent',
                               borderColor: 'transparent',
+                            }}
+                            onPress={() => {
+                              this.setState({
+                                icings: {name: icing.name, selected: true},
+                              });
                             }}
                           />
                         );
@@ -125,13 +150,17 @@ export class Custom extends Component {
                         }}>
                         <Text
                           style={{color: '#C50069', fontSize: 30}}
-                          onPress={() => decreaseCount(count)}>
+                          onPress={() =>
+                            this.setState({tiers: --this.state.tiers})
+                          }>
                           -
                         </Text>
-                        <Text style={{fontSize: 25}}>{count}</Text>
+                        <Text style={{fontSize: 25}}>{this.state.tiers}</Text>
                         <Text
                           style={{color: '#C50069', fontSize: 30}}
-                          onPress={() => increaseCount(count)}>
+                          onPress={() =>
+                            this.setState({tiers: ++this.state.tiers})
+                          }>
                           +
                         </Text>
                       </View>
@@ -143,12 +172,17 @@ export class Custom extends Component {
                         return (
                           <CheckBox
                             key={index}
-                            checked={false}
+                            checked={flavour.name == state.flavours.name}
                             checkedColor="#C50069"
-                            title={flavour}
+                            title={flavour.name}
                             containerStyle={{
                               backgroundColor: 'transparent',
                               borderColor: 'transparent',
+                            }}
+                            onPress={() => {
+                              this.setState({
+                                flavours: {name: flavour.name, selected: true},
+                              });
                             }}
                           />
                         );

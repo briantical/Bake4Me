@@ -14,6 +14,13 @@ import {
 const width = Dimensions.get('window').width;
 
 export class Cart extends Component {
+  constructor() {
+    super();
+    this.state = {
+      required: {},
+      optional: {},
+    };
+  }
   componentDidMount() {
     let {
       setCount,
@@ -91,6 +98,8 @@ export class Cart extends Component {
       },
     } = this.props;
 
+    let {state} = this;
+
     return (
       <SafeAreaView>
         <View style={{padding: 10, position: 'relative', zIndex: 0}}>
@@ -138,12 +147,17 @@ export class Cart extends Component {
                       alignItems: 'center',
                     }}>
                     <CheckBox
-                      checked={item.marked}
+                      checked={item.name == state.required.name}
                       checkedColor="#C50069"
                       title={item.name}
                       containerStyle={{
                         backgroundColor: 'transparent',
                         borderColor: 'transparent',
+                      }}
+                      onPress={() => {
+                        this.setState({
+                          required: {name: item.name, marked: true},
+                        });
                       }}
                     />
                     <Text>{item.cost + ' Ush'}</Text>
@@ -169,12 +183,17 @@ export class Cart extends Component {
                       alignItems: 'center',
                     }}>
                     <CheckBox
-                      checked={item.marked}
+                      checked={item.name == state.optional.name}
                       checkedColor="#C50069"
                       title={item.name}
                       containerStyle={{
                         backgroundColor: 'transparent',
                         borderColor: 'transparent',
+                      }}
+                      onPress={() => {
+                        this.setState({
+                          optional: {name: item.name, marked: true},
+                        });
                       }}
                     />
                     <Text>{item.cost + ' Ush'}</Text>
