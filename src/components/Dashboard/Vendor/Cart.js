@@ -112,7 +112,11 @@ export class Cart extends Component {
           />
           <View style={{zIndex: -1}}>
             <Image
-              source={(require = image)}
+              source={
+                typeof image == 'string'
+                  ? {uri: image}
+                  : require('_assets/default_cake.png')
+              }
               style={{height: 80, width: width - 10, zIndex: -1}}
             />
           </View>

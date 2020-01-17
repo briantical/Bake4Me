@@ -10,8 +10,12 @@ import {Formik} from 'formik';
 import {connect} from 'react-redux';
 import {Header, Icon, CheckBox, Input, Button} from 'react-native-elements';
 import ImagePicker from 'react-native-image-crop-picker';
+import firebase from 'react-native-firebase';
 
 import {setCount, increaseCount, decreaseCount} from '_actions';
+
+const storageService = firebase.storage();
+const storageRef = storageService.ref();
 
 const shapes = [
   {name: 'Round', selected: false},
@@ -41,6 +45,7 @@ export class Custom extends Component {
       shapes: {name: 'Round', selected: true},
       icings: {name: 'Butter', selected: true},
       tiers: 0,
+      images: null,
       flavours: {name: 'Vanilla', selected: true},
       colours: 'Pink',
       instructions: 'How would you like your cake?',
@@ -50,10 +55,62 @@ export class Custom extends Component {
     this.props.setCount(1);
   }
 
+  // uploadImage = path => {
+  //   storageRef.child(`Orders/${Date.now() + '.png'}`).put(path);
+  // };
+
+  //Upload the image to firebase and return the URL to the image
+  uploadImage = path => {
+    const uploadTask = storageRef
+      .child(`Orders/${Date.now() + '.png'}`)
+      .put(path);
+
+    uploadTask.on(
+      'state_changed',
+      snapshot => {
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case firebase.storage.TaskState.PAUSED: // or 'paused'
+            console.log('Upload is paused');
+            break;
+          case firebase.storage.TaskState.RUNNING: // or 'running'
+            console.log('Upload is running');
+            break;
+          default:
+            console.log('Unknown state');
+            break;
+        }
+      },
+      error => {
+        // Handle unsuccessful uploads
+        console.log('error' + error);
+      },
+      () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+          //Get the uploaded image's url and set it as the image state
+          this.setState({images: [...this.state.image, downloadURL]});
+        });
+      },
+    );
+    uploadTask
+      .then(() => console.log('sucessfully uploaded the user image'))
+      .catch(error => console.log('The error:' + error));
+  };
+
   chooseImage = () => {
     ImagePicker.openPicker({
       multiple: true,
     }).then(images => {
+      images.forEach(image => {
+        let {path} = image;
+        this.uploadImage(path);
+      });
       console.log(images);
     });
   };
@@ -151,7 +208,9 @@ export class Custom extends Component {
                         <Text
                           style={{color: '#C50069', fontSize: 30}}
                           onPress={() =>
-                            this.setState({tiers: --this.state.tiers})
+                            this.state.tiers <= 0
+                              ? null
+                              : this.setState({tiers: --this.state.tiers})
                           }>
                           -
                         </Text>

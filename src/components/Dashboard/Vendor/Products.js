@@ -37,7 +37,14 @@ const ProductsComponent = ({content, componentProps}) => {
             width: 80,
             marginLeft: 10,
           }}>
-          <Image source={(require = image)} style={{height: 80, width: 80}} />
+          <Image
+            source={
+              typeof image == 'string'
+                ? {uri: image}
+                : require('_assets/default_cake.png')
+            }
+            style={{height: 80, width: 80}}
+          />
         </View>
         <View style={{paddingLeft: 5, width: 300, height: 20}}>
           <Text style={{fontWeight: 'bold'}}>{name}</Text>
