@@ -12,7 +12,7 @@ import {connect} from 'react-redux';
 import SkeletonContent from 'react-native-skeleton-content-nonexpo';
 
 const ProductsComponent = ({content, componentProps}) => {
-  let {id, name, description, image, price} = content;
+  let {id, name, description, images, price} = content;
   let {cart} = componentProps;
   let exists = cart.some(item => item.id == id);
 
@@ -39,8 +39,8 @@ const ProductsComponent = ({content, componentProps}) => {
           }}>
           <Image
             source={
-              typeof image == 'string'
-                ? {uri: image}
+              typeof images[0] == 'string'
+                ? {uri: images[0]}
                 : require('_assets/default_cake.png')
             }
             style={{height: 80, width: 80}}
@@ -59,6 +59,7 @@ const ProductsComponent = ({content, componentProps}) => {
 export class Products extends Component {
   render() {
     const {componentProps, data} = this.props;
+
     return (
       <SafeAreaView style={styles.container}>
         <FlatList
