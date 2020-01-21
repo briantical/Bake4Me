@@ -51,7 +51,6 @@ export class Custom extends Component {
 
     let price = 0;
     let name = 'custom order';
-    let options = null;
     let {
       state: {tiers, count},
       props: {setCartItems},
@@ -175,8 +174,6 @@ export class Custom extends Component {
                     <View
                       style={{
                         marginTop: 10,
-                        // borderBottomColor: '#C50069',
-                        //borderBottomWidth: StyleSheet.hairlineWidth,
                       }}>
                       <Text style={{fontWeight: 'bold'}}>Shape :</Text>
                       {shapes.map((shape, index) => {

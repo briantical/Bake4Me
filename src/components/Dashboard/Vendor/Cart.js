@@ -57,7 +57,7 @@ export class Cart extends Component {
       navigation: {
         state: {
           params: {
-            content: {id, name, description, image, price, required, options},
+            content: {id, name, description, images, price, required, options},
             exists,
           },
         },
@@ -70,7 +70,7 @@ export class Cart extends Component {
           id,
           name,
           description,
-          image,
+          images,
           price,
           required,
           options,
@@ -80,7 +80,7 @@ export class Cart extends Component {
           id,
           name,
           description,
-          image,
+          images,
           price,
           required,
           options,
@@ -120,7 +120,7 @@ export class Cart extends Component {
 
     return (
       <SafeAreaView>
-        <View style={{padding: 10, position: 'relative', zIndex: 0}}>
+        <View style={{padding: 10, position: 'relative', zIndex: 0, height}}>
           <Icon
             name="closecircleo"
             type="antdesign"
@@ -137,8 +137,6 @@ export class Cart extends Component {
               }
               style={{height: 80, width: width - 10, zIndex: -1}}
             />
-          </View>
-          <ScrollView style={{height}}>
             <View style={{justifyContent: 'space-between', marginBottom: 10}}>
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -147,6 +145,8 @@ export class Cart extends Component {
               </View>
               <Text>{description}</Text>
             </View>
+          </View>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{marginBottom: 10}}>
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -170,39 +170,38 @@ export class Cart extends Component {
                         borderBottomWidth: StyleSheet.hairlineWidth,
                       }}>
                       {Object.values(item).map((innerItem, innerIndex) => {
+                        let itemname =
+                          Object.keys(item)
+                            .toString()
+                            .charAt(0)
+                            .toUpperCase() +
+                          Object.keys(item)
+                            .toString()
+                            .slice(1);
                         return (
-                          <View
-                            key={innerIndex}
-                            style={
-                              {
-                                // flexDirection: 'row',
-                                // justifyContent: 'space-between',
-                                // alignItems: 'center',
-                              }
-                            }>
-                            <Text style={{fontWeight: 'bold'}}>
-                              {Object.keys(item)
-                                .toString()
-                                .charAt(0)
-                                .toUpperCase() +
-                                Object.keys(item)
-                                  .toString()
-                                  .slice(1)}
-                            </Text>
+                          <View key={innerIndex}>
+                            <Text style={{fontWeight: 'bold'}}>{itemname}</Text>
                             {innerItem.map((innermost, innermostindex) => {
                               return (
                                 <CheckBox
                                   key={innermostindex}
-                                  checked={false}
+                                  checked={
+                                    typeof this.state[`${itemname}`] ==
+                                    'undefined'
+                                      ? null
+                                      : this.state[`${itemname}`].includes(
+                                          innermost,
+                                        )
+                                  }
                                   checkedColor="#C50069"
-                                  title={innermost}
+                                  title={innermost.toString()}
                                   containerStyle={{
                                     backgroundColor: 'transparent',
                                     borderColor: 'transparent',
                                   }}
                                   onPress={() => {
                                     this.setState({
-                                      optional: {name: item.name, marked: true},
+                                      [itemname]: `{name: ${innermost.toString()}, marked: true}`,
                                     });
                                   }}
                                 />
@@ -232,60 +231,96 @@ export class Cart extends Component {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                       }}>
-                      <CheckBox
-                        checked={item.name == state.optional.name}
-                        checkedColor="#C50069"
-                        title={item.name}
-                        containerStyle={{
-                          backgroundColor: 'transparent',
-                          borderColor: 'transparent',
-                        }}
-                        onPress={() => {
-                          this.setState({
-                            optional: {name: item.name, marked: true},
-                          });
-                        }}
-                      />
-                      <Text>{item.cost + ' Ush'}</Text>
+                      {Object.values(item).map((innerItem, innerIndex) => {
+                        let itemname =
+                          innerItem.length == 0
+                            ? 'No options available for this offer'
+                            : Object.keys(item)
+                                .toString()
+                                .charAt(0)
+                                .toUpperCase() +
+                              Object.keys(item)
+                                .toString()
+                                .slice(1);
+
+                        return (
+                          <View key={innerIndex}>
+                            <Text style={{fontWeight: 'bold'}}>{itemname}</Text>
+                            {innerItem.map((innermost, innermostindex) => {
+                              return (
+                                <View
+                                  key={innermostindex}
+                                  style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                  }}>
+                                  <CheckBox
+                                    key={innermostindex}
+                                    checked={
+                                      typeof this.state[`${itemname}`] ==
+                                      'undefined'
+                                        ? null
+                                        : this.state[`${itemname}`].includes(
+                                            innermost.name,
+                                          )
+                                    }
+                                    checkedColor="#C50069"
+                                    title={innermost.name}
+                                    containerStyle={{
+                                      backgroundColor: 'transparent',
+                                      borderColor: 'transparent',
+                                    }}
+                                    onPress={() => {
+                                      this.setState({
+                                        [itemname]: `{name: ${innermost.name}, marked: true}`,
+                                      });
+                                    }}
+                                  />
+                                  <Text>{'Ushs.' + innermost.cost}</Text>
+                                </View>
+                              );
+                            })}
+                          </View>
+                        );
+                      })}
                     </View>
                   );
                 })}
               </View>
             </View>
+          </ScrollView>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
             <View
               style={{
                 flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                bottom: 0,
-                zIndex: 2,
+                width: 200,
+                justifyContent: 'space-around',
               }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  width: 200,
-                  justifyContent: 'space-around',
-                }}>
-                <Text
-                  style={{color: '#C50069', fontSize: 30}}
-                  onPress={() => decreaseCount(count)}>
-                  -
-                </Text>
-                <Text style={{fontSize: 25}}>{count}</Text>
-                <Text
-                  style={{color: '#C50069', fontSize: 30}}
-                  onPress={() => increaseCount(count)}>
-                  +
-                </Text>
-              </View>
-              <Button
-                title={exists ? 'UPDATE CART' : 'ADD TO CART'}
-                buttonStyle={{backgroundColor: '#C50069'}}
-                containerStyle={{padding: 10}}
-                onPress={() => this.setOrder()}
-              />
+              <Text
+                style={{color: '#C50069', fontSize: 30}}
+                onPress={() => decreaseCount(count)}>
+                -
+              </Text>
+              <Text style={{fontSize: 25}}>{count}</Text>
+              <Text
+                style={{color: '#C50069', fontSize: 30}}
+                onPress={() => increaseCount(count)}>
+                +
+              </Text>
             </View>
-          </ScrollView>
+            <Button
+              title={exists ? 'UPDATE CART' : 'ADD TO CART'}
+              buttonStyle={{backgroundColor: '#C50069'}}
+              containerStyle={{padding: 10}}
+              onPress={() => this.setOrder()}
+            />
+          </View>
         </View>
       </SafeAreaView>
     );

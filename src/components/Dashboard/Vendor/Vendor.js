@@ -74,20 +74,20 @@ const cakes_data = [
 const snacks_data = [
   {
     id: 'bd7acbpdea-4-cake-aepd5-3ad53abb28ba',
-    name: 'Red Velvet',
+    name: 'Danish Cookies',
     description:
-      'Red velvet cake with cream cheese frosting! fluffy, soft, buttery and moist with the most perfect velvet texture.',
+      'Danish Cookies are unleavened cookies consisting of butter, flour, and sugar',
     images: [
-      'https://firebasestorage.googleapis.com/v0/b/bake4me-confectioneries.appspot.com/o/assets%2Fcakes%2FRed%20Velvet%20Cake.jpeg?alt=media&token=d604cdb6-bd9d-402a-8e5b-3d27adfccaf9',
+      'https://firebasestorage.googleapis.com/v0/b/bake4me-confectioneries.appspot.com/o/assets%2Fsnacks%2Fcookies.jpeg?alt=media&token=aa62363e-fb05-406c-abf7-c53e1f4eab68',
     ],
-    price: '30000',
+    price: '5500',
     count: 0,
     required: {
-      shapes: ['Round', 'Rectangle'],
-      tiers: [2, 4, 5],
+      shapes: ['Round', 'Rectangle', 'Starred'],
+      tiers: [0],
       flavours: ['Stawberry', 'Vanilla'],
-      colours: ['Blue', 'White'],
-      weight: [1.5, 2, 4],
+      colours: ['Brown', 'Red'],
+      weight: [1.5, 2, 3],
     },
     options: {
       drinks: [
