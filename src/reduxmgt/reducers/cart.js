@@ -1,4 +1,9 @@
-import {SET_CART_ITEMS, UPDATE_CART_ITEMS} from '_constants/action-types';
+import {
+  SET_CART_ITEMS,
+  UPDATE_CART_ITEMS,
+  REMOVE_CART_ITEM,
+  REMOVE_CART_ITEMS,
+} from '_constants/action-types';
 
 const cart = (state = [], action) => {
   switch (action.type) {
@@ -7,6 +12,12 @@ const cart = (state = [], action) => {
         (acc, x) => acc.concat(acc.find(y => y.id === x.id) ? [] : [x]),
         [],
       );
+
+    case REMOVE_CART_ITEM:
+      return state.filter(item => item.id !== action.payload);
+
+    case REMOVE_CART_ITEMS:
+      return action.payload;
 
     case UPDATE_CART_ITEMS:
       let newCart = action.payload;

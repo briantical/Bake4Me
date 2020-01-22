@@ -5,10 +5,13 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Dimensions,
+  StyleSheet,
 } from 'react-native';
 import {Header, Icon, Input, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
 import {DrawerActions} from 'react-navigation-drawer';
+
+import {removeCartItems, removeCartItem} from '_actions';
 
 var {height} = Dimensions.get('window');
 
@@ -42,7 +45,12 @@ export class OrderDetails extends Component {
 
             return (
               <TouchableOpacity
-                style={{padding: 10, justifyContent: 'space-between'}}
+                style={{
+                  padding: 10,
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
                 key={index}
                 onPress={() =>
                   this.props.navigation.navigate('Cart', {
@@ -50,27 +58,35 @@ export class OrderDetails extends Component {
                     exists: true,
                   })
                 }>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                  }}>
-                  <View style={{flexDirection: 'row'}}>
-                    <Text style={{fontWeight: 'bold', fontSize: 15}}>
-                      {count + 'x '}
-                    </Text>
-                    <Text style={{fontWeight: 'bold', fontSize: 15}}>
-                      {name}
-                    </Text>
-                  </View>
-                  <View style={{flexDirection: 'row'}}>
-                    <Text>{price * count}</Text>
-                    <Text>Ush</Text>
-                  </View>
-                </View>
                 <View>
-                  <Text>{description}</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                    }}>
+                    <View style={{flexDirection: 'row'}}>
+                      <Text style={{fontWeight: 'bold', fontSize: 15}}>
+                        {count + 'x '}
+                      </Text>
+                      <Text style={{fontWeight: 'bold', fontSize: 15}}>
+                        {name}
+                      </Text>
+                    </View>
+                    <View style={{flexDirection: 'row'}}>
+                      <Text>{'Ushs. ' + price * count}</Text>
+                    </View>
+                  </View>
+                  <View>
+                    <Text>{description}</Text>
+                  </View>
                 </View>
+                <Icon
+                  name="closecircleo"
+                  type="antdesign"
+                  color="#C50069"
+                  iconStyle={{}}
+                  onPress={() => this.props.removeCartItem(id)}
+                />
               </TouchableOpacity>
             );
           })}
@@ -87,7 +103,7 @@ export class OrderDetails extends Component {
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Text>Subtotal</Text>
-                <Text>{totalprice + ' Ush'}</Text>
+                <Text>{'Ushs. ' + totalprice}</Text>
               </View>
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -97,7 +113,7 @@ export class OrderDetails extends Component {
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Text>Delivery Fee</Text>
-                <Text>Free</Text>
+                <Text>{'Ushs. ' + 5000}</Text>
               </View>
             </View>
             <View
@@ -106,7 +122,7 @@ export class OrderDetails extends Component {
                 justifyContent: 'space-between',
               }}>
               <Text>Total</Text>
-              <Text>{totalprice + ' Ush'}</Text>
+              <Text>{'Ushs. ' + totalprice}</Text>
             </View>
           </View>
 
@@ -120,6 +136,24 @@ export class OrderDetails extends Component {
             containerStyle={{padding: 10, flex: 1}}
             onPress={() => this.props.navigation.navigate('Checkout')}
           />
+          <Button
+            buttonStyle={{
+              borderColor: '#C50069',
+              borderRadius: 50,
+              borderWidth: StyleSheet.hairlineWidth,
+            }}
+            title="CANCEL ORDER"
+            titleStyle={{color: '#C50069'}}
+            type="outline"
+            containerStyle={{
+              margin: 10,
+              flex: 1,
+            }}
+            onPress={() => {
+              this.props.removeCartItems();
+              this.props.navigation.navigate('_Vendor', {show: false});
+            }}
+          />
         </View>
       </SafeAreaView>
     );
@@ -131,6 +165,6 @@ const mapStateToProps = state => {
   return {cart};
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {removeCartItems, removeCartItem};
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderDetails);

@@ -2,6 +2,8 @@ import {
   SET_SCROLL_SCREEN,
   SET_CART_ITEMS,
   UPDATE_CART_ITEMS,
+  REMOVE_CART_ITEMS,
+  REMOVE_CART_ITEM,
   DECREASE_COUNT,
   INCREASE_COUNT,
   SET_COUNT,
@@ -22,6 +24,16 @@ export const setCartItems = item => ({
 export const updateCartItems = item => ({
   type: UPDATE_CART_ITEMS,
   payload: item,
+});
+
+export const removeCartItem = item_id => ({
+  type: REMOVE_CART_ITEM,
+  payload: item_id,
+});
+
+export const removeCartItems = () => ({
+  type: REMOVE_CART_ITEMS,
+  payload: [],
 });
 
 export const increaseCount = count => ({

@@ -25,6 +25,7 @@ export class Cart extends Component {
   constructor() {
     super();
     this.state = {
+      count: 1,
       required: {},
       optional: {},
     };
@@ -99,6 +100,7 @@ export class Cart extends Component {
       navigation: {
         state: {
           params: {
+            content,
             content: {
               id,
               name,
@@ -114,10 +116,9 @@ export class Cart extends Component {
       },
     } = this.props;
 
-    let {state} = this;
     let required = [{shapes}, {tiers}, {flavours}, {colours}, {weight}];
     let options = [{drinks}];
-
+    console.log(content);
     return (
       <SafeAreaView>
         <View style={{padding: 10, position: 'relative', zIndex: 0, height}}>
