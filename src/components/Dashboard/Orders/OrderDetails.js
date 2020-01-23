@@ -13,7 +13,7 @@ import {DrawerActions} from 'react-navigation-drawer';
 
 import {removeCartItems, removeCartItem} from '_actions';
 
-var {height} = Dimensions.get('window');
+var {height, width} = Dimensions.get('window');
 
 export class OrderDetails extends Component {
   render() {
@@ -24,7 +24,7 @@ export class OrderDetails extends Component {
 
     return (
       <SafeAreaView>
-        <View style={{height}}>
+        <View style={{height, width}}>
           <Header
             backgroundColor="#C50069"
             leftComponent={

@@ -43,7 +43,7 @@ export class Cart extends Component {
       navigation: {
         state: {
           params: {
-            content: {id, name, price, description},
+            content: {id, name, price, description, images},
             exists,
           },
         },
@@ -54,6 +54,7 @@ export class Cart extends Component {
     this.setState({price});
     this.setState({description});
     this.setState({id});
+    this.setState({images});
 
     let cartitem = exists ? cart.filter(item => item.id == id) : [];
     let count = cartitem.length != 0 ? cartitem[0].count : 1;
@@ -81,6 +82,7 @@ export class Cart extends Component {
     } else if (!stateKeys.includes('weight')) {
       this.setState({errors: {name: 'weight', message: 'Weight is required'}});
     } else {
+      this.setState({errors: {}});
       let {
         setCartItems,
         updateCartItems,
@@ -179,7 +181,8 @@ export class Cart extends Component {
 
     return (
       <SafeAreaView>
-        <View style={{padding: 10, position: 'relative', zIndex: 0, height}}>
+        <View
+          style={{padding: 10, position: 'relative', zIndex: 0, height, width}}>
           <Icon
             name="closecircleo"
             type="antdesign"
