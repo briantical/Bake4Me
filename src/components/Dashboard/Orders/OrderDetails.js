@@ -21,6 +21,7 @@ export class OrderDetails extends Component {
     let totalprice = cart.reduce(function(prev, cur) {
       return prev + cur.count * cur.price;
     }, 0);
+
     return (
       <SafeAreaView>
         <View style={{height}}>
@@ -41,23 +42,23 @@ export class OrderDetails extends Component {
             }}
           />
           {cart.map((content, index) => {
-            let {count, description, id, image, name, price} = content;
+            let {count, description, id, name, price} = content;
 
             return (
               <TouchableOpacity
                 style={{
                   padding: 10,
                   flexDirection: 'row',
-                  justifyContent: 'center',
+                  justifyContent: 'space-between',
                   alignItems: 'center',
                 }}
                 key={index}
-                onPress={() =>
+                onPress={() => {
                   this.props.navigation.navigate('Cart', {
                     content,
                     exists: true,
-                  })
-                }>
+                  });
+                }}>
                 <View>
                   <View
                     style={{
