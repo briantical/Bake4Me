@@ -8,11 +8,11 @@ import {
   Image,
 } from 'react-native';
 import {connect} from 'react-redux';
-
 import {Header, Icon, Tile} from 'react-native-elements';
 
-const height = Dimensions.get('window').height;
+const {width, height} = Dimensions.get('window');
 const address = require('_assets/address.png');
+const bake4me_image = require('_assets/bake4me.png');
 
 export class About extends Component {
   render() {
@@ -35,14 +35,35 @@ export class About extends Component {
           }}
         />
         <ScrollView style={{height}}>
-          <Tile
-            imageSrc={require('_assets/bake4me.png')}
-            title="Bake4Me"
-            featured
-            caption="Get all the cafectionery"
-            imageProps={{resizeMode: 'contain'}}
-            titleStyle={{color: 'rgb(42,203,178)'}}
-            captionStyle={{fontWeight: 'bold'}}></Tile>
+          <View
+            style={{
+              width,
+              height: 300,
+              padding: 5,
+              position: 'relative',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Image
+              source={(require = bake4me_image)}
+              resizeMode="cover"
+              style={{height: '100%', width: '100%'}}
+            />
+            <View
+              style={{
+                alignSelf: 'center',
+                position: 'absolute',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text style={{color: 'rgb(42,203,178)', fontSize: 30}}>
+                Bake4Me
+              </Text>
+              <Text style={{fontWeight: 'bold', color: 'white', fontSize: 15}}>
+                Get all the cafectionery
+              </Text>
+            </View>
+          </View>
 
           <View style={{flex: 16, height, padding: 10}}>
             <View style={{flex: 1, justifyContent: 'space-between'}}>
@@ -55,7 +76,7 @@ export class About extends Component {
                   size={15}
                 />
                 <Text style={{color: 'rgb(151,151,151)'}}>
-                  5.0 $ Min Order 10,000 Ush - Delivery fee 3,000 Ush
+                  5.0 $ Min Order Ushs. 30,000 - Delivery fee Ushs. 5,000
                 </Text>
               </View>
 
@@ -117,14 +138,17 @@ export class About extends Component {
               }}>
               <Text style={{fontWeight: 'bold'}}>Payment Methods</Text>
               <Text style={{color: 'rgb(151,151,151)'}}>Cash on delivery</Text>
+              <Text style={{color: 'rgb(151,151,151)'}}>MTN Direct Pay</Text>
               <Text style={{color: 'rgb(151,151,151)'}}>
                 Card Payment (Visa , Mastercard, Amex)
               </Text>
-              <Text style={{color: 'rgb(151,151,151)'}}>MTN Direct Pay</Text>
             </View>
 
             <View style={{flex: 6, marginTop: 20}}>
               <Text style={{fontWeight: 'bold'}}>Reviews</Text>
+              <Text style={{color: 'rgb(151,151,151)', alignSelf: 'center'}}>
+                No reviews available yet
+              </Text>
             </View>
           </View>
         </ScrollView>

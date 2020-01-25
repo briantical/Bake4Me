@@ -70,10 +70,9 @@ export class Login extends Component {
         errors.message = 'Password is Required';
       } else if (values.password.length < 7) {
         errors.message = 'Password is short';
+      } else if (!passwordRegex.test(values.password)) {
+        errors.message = 'Password is weak';
       }
-      // else if (!passwordRegex.test(values.password)) {
-      //   errors.message = 'Password is weak';
-      // }
       return errors;
     };
 
