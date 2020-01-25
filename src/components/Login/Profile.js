@@ -34,8 +34,8 @@ export class Profile extends Component {
 
     Keyboard.dismiss();
     let {payment, fullName, phoneNumber, userName, location} = values;
-
-    let data = {payment};
+    let items = [{}];
+    let data = {items};
     let options = {
       responseType: 'json',
     };
@@ -51,13 +51,14 @@ export class Profile extends Component {
           cart: {_id},
         } = response.data;
         let cart = _id;
-        let avatar = 'some image';
+        let avatar = 'default image';
         this.completeProfile({
           fullName,
           avatar,
           phoneNumber,
           userName,
           location,
+          payment,
           cart,
         });
       })
