@@ -15,7 +15,7 @@ import {DrawerActions} from 'react-navigation-drawer';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 
 import {setScrollScreen} from '_actions';
-import {Products} from '_components';
+import {Products} from './Products';
 import * as screenNames from '_constants/screen_names';
 
 const height = Dimensions.get('window').height;

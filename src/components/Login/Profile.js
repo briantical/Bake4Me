@@ -18,6 +18,12 @@ import {API_URL} from 'react-native-dotenv';
 import {setToken, setUser} from '_actions';
 
 export class Profile extends Component {
+  constructor() {
+    super();
+    this.setState = {
+      loading: false,
+    };
+  }
   componentDidMount() {
     let {setToken} = this.props;
     AsyncStorage.getItem('token', (error, result) => {
@@ -124,6 +130,8 @@ export class Profile extends Component {
       return errors;
     };
 
+    let {loading} = this.state;
+
     return (
       <SafeAreaView style={{flex: 1}}>
         <KeyboardAvoidingView
@@ -151,13 +159,14 @@ export class Profile extends Component {
                         color="#fff"
                         onPress={() =>
                           this.props.navigation.navigate(
-                            complete ? 'Account' : 'Login',
+                            complete == true ? 'Account' : 'Login',
                           )
                         }
                       />
                     }
                     centerComponent={{
-                      text: complete ? 'Edit Profile' : 'Complete Profile',
+                      text:
+                        complete == true ? 'Edit Profile' : 'Complete Profile',
                       style: {color: '#fff', fontWeight: 'bold'},
                     }}
                   />
@@ -208,12 +217,28 @@ export class Profile extends Component {
                   </Text>
 
                   <Button
-                    title={complete ? 'UPDATE' : 'COMPLETE'}
+                    title={complete == true ? 'UPDATE' : 'COMPLETE'}
                     titleStyle={{fontWeight: 'bold'}}
                     buttonStyle={{backgroundColor: '#C50069'}}
                     containerStyle={{padding: 10}}
                     onPress={handleSubmit}
                   />
+
+                  {loading ? (
+                    <Button
+                      buttonStyle={{backgroundColor: '#C50069'}}
+                      loading
+                      containerStyle={{padding: 10}}
+                    />
+                  ) : (
+                    <Button
+                      title={complete == true ? 'UPDATE' : 'COMPLETE'}
+                      titleStyle={{fontWeight: 'bold'}}
+                      buttonStyle={{backgroundColor: '#C50069'}}
+                      containerStyle={{padding: 10}}
+                      onPress={handleSubmit}
+                    />
+                  )}
                 </View>
               )}
             </Formik>

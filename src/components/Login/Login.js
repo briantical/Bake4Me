@@ -8,7 +8,7 @@ import {
   Platform,
 } from 'react-native';
 import {connect} from 'react-redux';
-import {Input, Button} from 'react-native-elements';
+import {Input, Button, Icon} from 'react-native-elements';
 import {Formik} from 'formik';
 import axios from 'axios';
 
@@ -23,7 +23,17 @@ const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
 export class Login extends Component {
+  constructor() {
+    super();
+    this.state = {
+      message: {data: '', type: 'success'},
+      loading: false,
+      show_password: true,
+    };
+  }
+
   login = (email, password) => {
+    this.setState({loading: true});
     let params = {
       email,
       password,
@@ -49,12 +59,14 @@ export class Login extends Component {
         //Asyncstorage doesnt accept objects
         storeData('user', JSON.stringify(user));
         this.props.setUser(user);
+        this.setState({loading: false});
         complete
           ? this.props.navigation.navigate('Drawer')
           : this.props.navigation.navigate('Profile');
       })
       .catch(error => {
         console.log('The response' + JSON.stringify(error));
+        this.setState({loading: false});
       });
   };
   render() {
@@ -75,6 +87,8 @@ export class Login extends Component {
       }
       return errors;
     };
+
+    let {message, loading, show_password} = this.state;
 
     return (
       <SafeAreaView style={{flex: 1}}>
@@ -111,21 +125,60 @@ export class Login extends Component {
                     placeholder="*********"
                     secureTextEntry={true}
                     textContentType="password"
+                    rightIcon={
+                      <Icon
+                        name={show_password ? 'visibility' : 'visibility-off'}
+                        color="grey"
+                        onPress={() =>
+                          this.setState({show_password: !show_password})
+                        }
+                      />
+                    }
                   />
                   <Text style={{color: 'red', alignSelf: 'center'}}>
                     {errors.message}
                   </Text>
-                  <Button
-                    title="LOGIN"
-                    titleStyle={{fontWeight: 'bold'}}
-                    buttonStyle={{backgroundColor: '#C50069'}}
-                    containerStyle={{padding: 10}}
-                    onPress={handleSubmit}
-                  />
+
+                  {loading ? (
+                    <Button
+                      buttonStyle={{backgroundColor: '#C50069'}}
+                      loading
+                      containerStyle={{padding: 10}}
+                    />
+                  ) : (
+                    <Button
+                      title="LOGIN"
+                      titleStyle={{fontWeight: 'bold'}}
+                      buttonStyle={{backgroundColor: '#C50069'}}
+                      containerStyle={{padding: 10}}
+                      onPress={handleSubmit}
+                    />
+                  )}
+                  <Text
+                    style={
+                      message.type == 'success'
+                        ? {
+                            color: 'green',
+                            alignSelf: 'center',
+                            fontWeight: 'bold',
+                          }
+                        : {
+                            color: 'red',
+                            alignSelf: 'center',
+                            fontWeight: 'bold',
+                          }
+                    }>
+                    {message.data}
+                  </Text>
                   <Text
                     style={{color: '#C50069', alignSelf: 'center'}}
                     onPress={() => this.props.navigation.navigate('Signup')}>
                     Create Account
+                  </Text>
+                  <Text
+                    style={{color: '#C50069', alignSelf: 'center'}}
+                    onPress={() => console.log('Forgot password')}>
+                    Forgot Password ?
                   </Text>
                 </View>
               )}

@@ -87,7 +87,7 @@ export class OrderDetails extends Component {
     axios
       .post(`${API_URL}/api/v1/order/`, data, {headers}, options)
       .then(response => {
-        console.log('You have made an  order');
+        console.log('Order has been initiated');
         this.props.removeCartItems();
         this.props.navigation.navigate('Checkout');
       })

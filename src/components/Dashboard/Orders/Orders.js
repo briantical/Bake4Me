@@ -3,7 +3,7 @@ import {SafeAreaView, Text, View, Dimensions} from 'react-native';
 import {connect} from 'react-redux';
 import {Header, Icon, Button} from 'react-native-elements';
 import {DrawerActions} from 'react-navigation-drawer';
-import {NoOrders} from '_components';
+import {NoOrders} from './NoOrders';
 
 let order;
 let {height, width} = Dimensions.get('window');
