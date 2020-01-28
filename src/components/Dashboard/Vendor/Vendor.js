@@ -337,7 +337,7 @@ export class Vendor extends Component {
           titleStyle={{color: '#FFF', fontWeight: 'bold'}}
           onPress={() => this.props.navigation.navigate('Custom')}
         />
-        {show ? (
+        {show && cart.length > 0 ? (
           <Button
             buttonStyle={{backgroundColor: '#C50069'}}
             containerStyle={{margin: 10, backgroundColor: 'transparent'}}

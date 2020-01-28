@@ -20,7 +20,7 @@ import {setToken, setUser} from '_actions';
 export class Profile extends Component {
   constructor() {
     super();
-    this.setState = {
+    this.state = {
       loading: false,
     };
   }
@@ -106,7 +106,10 @@ export class Profile extends Component {
   };
   render() {
     let {
-      user: {email, profile: complete},
+      user: {
+        email,
+        profile: {complete},
+      },
     } = this.props;
 
     // Synchronous validation
@@ -131,6 +134,7 @@ export class Profile extends Component {
     };
 
     let {loading} = this.state;
+    console.log(complete);
 
     return (
       <SafeAreaView style={{flex: 1}}>
@@ -159,7 +163,7 @@ export class Profile extends Component {
                         color="#fff"
                         onPress={() =>
                           this.props.navigation.navigate(
-                            complete == true ? 'Account' : 'Login',
+                            complete ? 'Account' : 'Login',
                           )
                         }
                       />
@@ -216,14 +220,6 @@ export class Profile extends Component {
                     {errors.message}
                   </Text>
 
-                  <Button
-                    title={complete == true ? 'UPDATE' : 'COMPLETE'}
-                    titleStyle={{fontWeight: 'bold'}}
-                    buttonStyle={{backgroundColor: '#C50069'}}
-                    containerStyle={{padding: 10}}
-                    onPress={handleSubmit}
-                  />
-
                   {loading ? (
                     <Button
                       buttonStyle={{backgroundColor: '#C50069'}}
@@ -232,7 +228,7 @@ export class Profile extends Component {
                     />
                   ) : (
                     <Button
-                      title={complete == true ? 'UPDATE' : 'COMPLETE'}
+                      title={complete ? 'UPDATE' : 'COMPLETE'}
                       titleStyle={{fontWeight: 'bold'}}
                       buttonStyle={{backgroundColor: '#C50069'}}
                       containerStyle={{padding: 10}}

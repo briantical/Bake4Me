@@ -40,9 +40,7 @@ export class OrderDetails extends Component {
 
     let data = this.props.cart;
 
-    let {
-      cart: {_id},
-    } = this.props.user;
+    let {cart: _id} = this.props.user;
 
     axios
       .put(`${API_URL}/api/v1/cart/${_id}`, data, {headers}, options)
@@ -51,6 +49,7 @@ export class OrderDetails extends Component {
         this.makeOrder();
       })
       .catch(error => {
+        console.log(this.props.user);
         console.log(error);
       });
   };
@@ -61,7 +60,7 @@ export class OrderDetails extends Component {
     let {
       _id: customer,
       profile: {location: deliveryAddress},
-      cart: {_id: cart_Id},
+      cart: cart_Id,
     } = this.props.user;
 
     let orderDate = new Date();
@@ -244,6 +243,7 @@ export class OrderDetails extends Component {
                 buttonStyle={{backgroundColor: '#C50069'}}
                 containerStyle={{padding: 10, flex: 1}}
                 onPress={() => this.checkout()}
+                disabled={cart.length <= 0}
               />
             )}
 
