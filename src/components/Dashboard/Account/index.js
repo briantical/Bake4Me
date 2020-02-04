@@ -39,8 +39,7 @@ export class Account extends Component {
     let {
       user: {
         email,
-        profile: {fullName, location, phoneNumber, userName},
-        cart: {payment},
+        profile: {fullName, location, phoneNumber, userName, payment},
       },
     } = this.props;
 
