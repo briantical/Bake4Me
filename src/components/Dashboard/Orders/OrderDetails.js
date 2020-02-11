@@ -18,7 +18,12 @@ import {API_URL} from '_utils';
 import {removeCartItems, removeCartItem} from '_actions';
 
 let {height, width} = Dimensions.get('window');
+
+//The delivery fee
 const delivery_fee = 5000;
+
+//The convinience fee
+const convinience_fee = 0;
 
 export class OrderDetails extends Component {
   constructor() {
@@ -41,7 +46,9 @@ export class OrderDetails extends Component {
 
     let data = this.props.cart;
 
-    let {cart: _id} = this.props.user;
+    let {
+      cart: {_id},
+    } = this.props.user;
 
     axios
       .put(`${API_URL}/api/v1/cart/${_id}`, data, {headers}, options)
@@ -50,7 +57,6 @@ export class OrderDetails extends Component {
         this.makeOrder();
       })
       .catch(error => {
-        console.log(this.props.user);
         console.log(error);
       });
   };
@@ -104,7 +110,11 @@ export class OrderDetails extends Component {
   render() {
     let {cart} = this.props;
     let totalprice = cart.reduce(function(prev, cur) {
-      return delivery_fee + prev + cur.count * cur.price;
+      return delivery_fee + convinience_fee + prev + cur.count * cur.price;
+    }, 0);
+
+    let subtotal = cart.reduce(function(prev, cur) {
+      return prev + cur.count * cur.price;
     }, 0);
 
     let {comments, loading} = this.state;
@@ -195,7 +205,7 @@ export class OrderDetails extends Component {
                     justifyContent: 'space-between',
                   }}>
                   <Text>Subtotal</Text>
-                  <Text>{'Ushs. ' + totalprice}</Text>
+                  <Text>{'Ushs. ' + subtotal}</Text>
                 </View>
                 <View
                   style={{
@@ -203,7 +213,7 @@ export class OrderDetails extends Component {
                     justifyContent: 'space-between',
                   }}>
                   <Text>Convinience Fee</Text>
-                  <Text>Free</Text>
+                  <Text>{convinience_fee != 0 ? convinience_fee : 'Free'}</Text>
                 </View>
                 <View
                   style={{
