@@ -13,7 +13,8 @@ import {Formik} from 'formik';
 import {Header, Icon, Input, Button} from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 import {storeData} from '_utils';
-import {API_URL} from 'react-native-dotenv';
+
+import {API_URL} from '_utils';
 
 import {setToken, setUser} from '_actions';
 

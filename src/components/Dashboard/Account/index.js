@@ -4,8 +4,7 @@ import {connect} from 'react-redux';
 import {DrawerActions} from 'react-navigation-drawer';
 import {Header, Icon, Input, CheckBox} from 'react-native-elements';
 import axios from 'axios';
-import {API_URL} from 'react-native-dotenv';
-import {clearData} from '_utils';
+import {clearData, API_URL} from '_utils';
 
 export class Account extends Component {
   constructor() {

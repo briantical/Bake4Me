@@ -12,7 +12,8 @@ import {Header, Icon, Input, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
 import {DrawerActions} from 'react-navigation-drawer';
 import axios from 'axios';
-import {API_URL} from 'react-native-dotenv';
+
+import {API_URL} from '_utils';
 
 import {removeCartItems, removeCartItem} from '_actions';
 

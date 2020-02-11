@@ -14,6 +14,8 @@ import {Header, Icon, Tile, Button} from 'react-native-elements';
 import {DrawerActions} from 'react-navigation-drawer';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 
+import {API_URL} from '_utils';
+
 import {setScrollScreen} from '_actions';
 import {Products} from './Products';
 import * as screenNames from '_constants/screen_names';
@@ -142,7 +144,7 @@ const getCakes = () => {
     Authorization: 'Bearer ' + token,
   };
   axios
-    .get(`http://localhost:3000/api/v1/cake/`, {headers})
+    .get(`${API_URL}/api/v1/cake/`, {headers})
     .then(response => {
       const {cakes} = response.data;
       //console.log(cakes);

@@ -12,11 +12,9 @@ import {Input, Button, Icon} from 'react-native-elements';
 import {Formik} from 'formik';
 import axios from 'axios';
 
-import {API_URL} from 'react-native-dotenv';
-
 import {setToken, setUser} from '_actions';
 
-import {storeData} from '_utils';
+import {storeData, API_URL} from '_utils';
 
 const {height, width} = Dimensions.get('window');
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
@@ -43,7 +41,11 @@ export class Login extends Component {
     };
 
     axios
-      .post(`${API_URL}/api/v1/auth/sign-in`, params, options)
+      .post(
+        `https://criteria-cakes.appspot.com/api/v1/auth/sign-in`,
+        params,
+        options,
+      )
       .then(response => {
         const {
           data: {

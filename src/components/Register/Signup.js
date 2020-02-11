@@ -14,7 +14,7 @@ import {Formik} from 'formik';
 import axios from 'axios';
 import Toast from 'react-native-root-toast';
 
-import {API_URL} from 'react-native-dotenv';
+import {API_URL} from '_utils';
 
 const {height, width} = Dimensions.get('window');
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
