@@ -125,7 +125,7 @@ export class Login extends Component {
                     name="password"
                     label="Password"
                     placeholder="*********"
-                    secureTextEntry={true}
+                    secureTextEntry={show_password}
                     textContentType="password"
                     rightIcon={
                       <Icon
