@@ -7,6 +7,7 @@ import {
   Dimensions,
   StyleSheet,
   ScrollView,
+  Platform,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {Formik} from 'formik';
@@ -180,16 +181,18 @@ export class Cart extends Component {
     } = this;
 
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{width, height}}>
         <View
           style={{padding: 10, position: 'relative', zIndex: 0, height, width}}>
-          <Icon
-            name="closecircleo"
-            type="antdesign"
-            color="#C50069"
-            iconStyle={{zIndex: 2, position: 'absolute', top: 5, left: 10}}
-            onPress={() => this.props.navigation.goBack()}
-          />
+          {Platform.OS == 'android' ? null : (
+            <Icon
+              name="closecircleo"
+              type="antdesign"
+              color="#C50069"
+              iconStyle={{zIndex: 2, position: 'absolute', top: 5, left: 10}}
+              onPress={() => this.props.navigation.goBack()}
+            />
+          )}
           <View style={{zIndex: -1}}>
             <Image
               source={
@@ -197,7 +200,7 @@ export class Cart extends Component {
                   ? {uri: images[0]}
                   : require('_assets/default_cake.png')
               }
-              style={{height: 80, width: width - 10, zIndex: -1}}
+              style={{height: 80, zIndex: -1}}
             />
             <View style={{justifyContent: 'space-between', marginBottom: 10}}>
               <View
@@ -418,11 +421,12 @@ export class Cart extends Component {
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                     alignItems: 'center',
+                    margin: 10,
                   }}>
                   <View
                     style={{
                       flexDirection: 'row',
-                      width: 200,
+                      flex: 4,
                       justifyContent: 'space-around',
                     }}>
                     <Text

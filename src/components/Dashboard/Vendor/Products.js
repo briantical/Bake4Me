@@ -7,9 +7,12 @@ import {
   FlatList,
   Image,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import {connect} from 'react-redux';
 import SkeletonContent from 'react-native-skeleton-content-nonexpo';
+
+const {width} = Dimensions.get('window');
 
 const ProductsComponent = ({content, componentProps}) => {
   let {id, name, description, images, price} = content;
@@ -23,6 +26,7 @@ const ProductsComponent = ({content, componentProps}) => {
       }
       style={{
         flexDirection: 'row',
+        width,
         marginTop: 10,
         paddingBottom: 10,
         borderBottomColor: 'grey',
@@ -30,11 +34,9 @@ const ProductsComponent = ({content, componentProps}) => {
       }}>
       <SkeletonContent
         isLoading={false}
-        containerStyle={{flexDirection: 'row'}}>
+        containerStyle={{flexDirection: 'row', width}}>
         <View
           style={{
-            height: 80,
-            width: 80,
             marginLeft: 10,
           }}>
           <Image
@@ -46,10 +48,10 @@ const ProductsComponent = ({content, componentProps}) => {
             style={{height: 80, width: 80}}
           />
         </View>
-        <View style={{paddingLeft: 5, width: 300, height: 20}}>
+        <View style={{paddingLeft: 5}}>
           <Text style={{fontWeight: 'bold'}}>{name}</Text>
-          <Text>{description}</Text>
-          <Text>{price}</Text>
+          <Text style={{flex: 1, flexWrap: 'wrap'}}>{description}</Text>
+          <Text>{`Shs.${price}`}</Text>
         </View>
       </SkeletonContent>
     </TouchableOpacity>
