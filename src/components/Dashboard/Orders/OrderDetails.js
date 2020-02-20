@@ -157,7 +157,7 @@ export class OrderDetails extends Component {
                       exists: true,
                     });
                   }}>
-                  <View>
+                  <View style={{width: '90%'}}>
                     <View
                       style={{
                         flexDirection: 'row',
@@ -258,24 +258,37 @@ export class OrderDetails extends Component {
               />
             )}
 
-            <Button
-              buttonStyle={{
-                borderColor: '#C50069',
-                borderRadius: 50,
-                borderWidth: StyleSheet.hairlineWidth,
-              }}
-              title="CANCEL ORDER"
-              titleStyle={{color: '#C50069'}}
-              type="outline"
-              containerStyle={{
-                margin: 10,
-                flex: 1,
-              }}
-              onPress={() => {
-                this.props.removeCartItems();
-                this.props.navigation.navigate('_Vendor', {show: false});
-              }}
-            />
+            {loading ? (
+              <Button
+                buttonStyle={{
+                  borderColor: '#C50069',
+                  backgroundColor: '#C50069',
+                  borderRadius: 50,
+                  borderWidth: StyleSheet.hairlineWidth,
+                }}
+                loading
+                containerStyle={{margin: 10, flex: 1}}
+              />
+            ) : (
+              <Button
+                buttonStyle={{
+                  borderColor: '#C50069',
+                  borderRadius: 50,
+                  borderWidth: StyleSheet.hairlineWidth,
+                }}
+                title="CANCEL ORDER"
+                titleStyle={{color: '#C50069'}}
+                type="outline"
+                containerStyle={{
+                  margin: 10,
+                  flex: 1,
+                }}
+                onPress={() => {
+                  this.props.removeCartItems();
+                  this.props.navigation.navigate('_Vendor', {show: false});
+                }}
+              />
+            )}
           </View>
         </ScrollView>
       </SafeAreaView>
