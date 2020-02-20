@@ -34,11 +34,11 @@ export class About extends Component {
             style: {color: '#fff', fontWeight: 'bold'},
           }}
         />
-        <ScrollView style={{height}}>
+        <ScrollView style={{}}>
           <View
             style={{
               width,
-              height: 300,
+              height: 200,
               padding: 5,
               position: 'relative',
               justifyContent: 'center',
@@ -65,7 +65,7 @@ export class About extends Component {
             </View>
           </View>
 
-          <View style={{flex: 16, height, padding: 10}}>
+          <View style={{flex: 16, padding: 10}}>
             <View style={{flex: 1, justifyContent: 'space-between'}}>
               <Text style={{fontWeight: 'bold'}}>Bake4Me </Text>
               <View style={{flexDirection: 'row'}}>
@@ -85,9 +85,13 @@ export class About extends Component {
             <View
               style={{
                 flex: 4,
+                width,
                 marginTop: 10,
               }}>
-              <Image source={(require = address)} style={{flex: 1}} />
+              <Image
+                source={(require = address)}
+                style={{resizeMode: 'cover', width: '100%'}}
+              />
             </View>
 
             <View
