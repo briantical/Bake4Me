@@ -137,7 +137,10 @@ export class OrderDetails extends Component {
             style: {color: '#fff', fontWeight: 'bold'},
           }}
         />
-        <ScrollView style={{flex: 1}} keyboardDismissMode="on-drag">
+        <ScrollView
+          style={{flex: 1}}
+          keyboardDismissMode="on-drag"
+          showsVerticalScrollIndicator={false}>
           <View style={{height, width}}>
             {cart.map((content, index) => {
               let {count, description, id, name, price} = content;
