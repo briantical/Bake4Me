@@ -98,6 +98,7 @@ export class OrderDetails extends Component {
         this.props.navigation.navigate('Checkout');
       })
       .catch(error => {
+        this.setState({loading: false});
         console.log('The response' + JSON.stringify(error));
       });
   };

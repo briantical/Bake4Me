@@ -10,7 +10,7 @@ labels = [
   'Pending',
   'Confirmed',
   'Processed',
-  'Payment Method',
+  'Payment',
   'Delivered',
   'Complete',
 ];
@@ -53,11 +53,11 @@ const getStepIndicatorIconConfig = ({position, stepStatus}) => {
       break;
     }
     case 1: {
-      iconConfig.name = 'location-on';
+      iconConfig.name = 'assessment';
       break;
     }
     case 2: {
-      iconConfig.name = 'assessment';
+      iconConfig.name = 'location-on';
       break;
     }
     case 3: {
@@ -129,24 +129,18 @@ export class Checkout extends Component {
             />
           }
           centerComponent={{
-            text: 'Checkout',
+            text: 'Track your Order',
             style: {color: '#fff', fontWeight: 'bold'},
           }}
         />
-        <Text> Checkout </Text>
+        <Text>Track Your Order</Text>
         <View style={styles.stepIndicator}>
           <StepIndicator
             renderStepIndicator={this.renderStepIndicator}
             customStyles={secondIndicatorStyles}
             currentPosition={this.state.currentPage}
             onPress={this.onStepPress}
-            labels={[
-              'Cart',
-              'Delivery Address',
-              'Order Summary',
-              'Payment Method',
-              'Track',
-            ]}
+            labels={['Cart', 'Processing', 'Delivered', 'Payment', 'Complete']}
           />
         </View>
       </SafeAreaView>
