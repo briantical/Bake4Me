@@ -80,6 +80,7 @@ platform :android do
     )
   end
 
+  desc "Capture android screenshots and upload them"
   lane :screenshots do
     capture_android_screenshots
     upload_to_play_store(
