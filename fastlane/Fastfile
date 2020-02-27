@@ -57,7 +57,7 @@ platform :android do
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
-    increment_build_number
+    #increment_build_number
     gradle(task: "assembleRelease" , project_dir: 'android/')
     upload_to_play_store(track: 'production') # Uploads the APK built in the gradle step above and releases it to all production users
   end

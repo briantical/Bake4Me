@@ -40,7 +40,7 @@ Build debug and test APK for screenshots
 ```
 fastlane android screenshots
 ```
-
+Capture android screenshots and upload them
 
 ----
 
