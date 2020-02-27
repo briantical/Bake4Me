@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.bake4me"
-  android:versionCode="2"
-  android:versionName="1.0">
+  android:versionCode="3"
+  android:versionName="1.0.1">
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Define ACCESS_FINE_LOCATION if you will use enableHighAccuracy=true  -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
