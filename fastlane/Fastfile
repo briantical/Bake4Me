@@ -82,10 +82,7 @@ platform :android do
 
   lane :screenshots do
     capture_android_screenshots
-    upload_to_play_store(
-      track: 'beta',
-      skip_upload_changelogs
-      )
+    upload_to_play_store(track: 'beta',skip_upload_changelogs)
   end
 end
 
